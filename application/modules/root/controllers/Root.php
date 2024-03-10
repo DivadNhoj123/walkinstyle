@@ -12,9 +12,12 @@ class Root extends MX_Controller
 
 	public function index()
 	{
+		$this->load->view('landing_page');
+	}
+	public function login()
+	{
 		$this->load->view('login_page');
 	}
-
 	public function registration_form()
 	{
 		$this->load->view('registration');
