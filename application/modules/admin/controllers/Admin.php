@@ -12,4 +12,21 @@ class Admin extends MX_Controller
     {
         $this->load->view('admin-panel/dashboard/admin-dashboard');
     }
+
+    public function product()
+    {
+        $this->load->view('admin-panel/products/product');
+    }
+
+    public function logout() {
+        $id = $this->nativesession->get('id'); // Retrieve session data
+        $this->nativesession->delete('id'); // Delete session data
+        
+        // Send JSON response
+        $response = array(
+            'success' => true,
+            'message' => 'Logged Out!'
+        );
+        echo json_encode($response);
+    }
 }
