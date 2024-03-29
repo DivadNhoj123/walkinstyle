@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="<?= base_url('assets'); ?>images/favicon.png" />
+    <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/dropify/dropify.min.css">
 </head>
 
 <body class="sidebar-dark">
@@ -257,25 +258,13 @@
                 <div class="content-wrapper">
                     <div class="row">
                         <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Welcome Back</h3>
-                                </div>
-                                <div class="col-12 col-xl-4">
-                                    <div class="justify-content-end d-flex">
-                                        <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                                            <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                                <a class="dropdown-item" href="#">January - March</a>
-                                                <a class="dropdown-item" href="#">March - June</a>
-                                                <a class="dropdown-item" href="#">June - August</a>
-                                                <a class="dropdown-item" href="#">August - November</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="alert alert-success">
+                                <button type="button" aria-hidden="true" class="close" data-dismiss="alert">
+                                    <i class="ti-close"></i>
+                                </button>
+                                <span>
+                                    <b> Success - </b> This is a regular notification made with ".alert-success"
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -283,64 +272,282 @@
                         <div class="col-lg-12 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                <div class="d-flex">
-                                    <h4 class="card-title">Shoes List</h4>
-                                </div>
-                                <div>
-                                    <a class="btn btn-sm btn-success"  data-toggle="modal" data-target="#myModal">
-                                        <i class="ti-plus"></i>
-                                        Shoe
-                                    </a>
-                                </div>
-                            </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="d-flex">
+                                            <h4 class="card-title">Shoes List</h4>
+                                        </div>
+                                        <div>
+                                            <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#add-modal">
+                                                <i class="ti-plus"></i>
+                                                Shoe
+                                            </a>
+                                            <div class="modal fade" id="add-modal">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Add Product</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="<?= base_url('admin/add_product'); ?>" method="POST" enctype="multipart/form-data">
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <input type="file" id="input-file-now-custom-2" class="dropify" data-height="400" name="img">
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="row mb-0">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Shoes</label>
+                                                                                    <input type="text" class="form-control" name="shoes" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Brand</label>
+                                                                                    <input type="text" class="form-control" name="brand" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Category</label>
+                                                                                    <select class="form-control" name="category" required>
+                                                                                        <option value="Sports">Sports</option>
+                                                                                        <option value="Running">Running</option>
+                                                                                        <option value="Snickers">Snickers</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+
+                                                                                <div class="form-group">
+                                                                                    <label>Color</label>
+                                                                                    <input type="text" class="form-control" name="color" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="form-group">
+                                                                            <label>Description</label>
+                                                                            <textarea class="form-control" rows="3" placeholder="Enter ..." id="description" name="description"></textarea>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Price</label>
+                                                                                    <input type="text" class="form-control" name="price" required>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6">
+                                                                                <div class="form-group">
+                                                                                    <label>Qty</label>
+                                                                                    <input type="text" class="form-control" name="qty" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer justify-content-between">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Action</th>
                                                     <th>Shoes</th>
-                                                    <th>Category</th>
-                                                    <th>Price</th>
-                                                    <th>Qty</th>
+                                                    <th>Categories</th>
+                                                    <th>Prices</th>
+                                                    <th>Stocks</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <a type="button" class="btn btn-info btn-sm">
-                                                            <i class="ti-pencil-alt"></i>
-                                                        </a>
-                                                        <a type="button" class="btn btn-danger btn-sm">
-                                                            <i class="ti-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                    <td>Photoshop</td>
-                                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Photoshop</td>
-                                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Photoshop</td>
-                                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jacob</td>
-                                                    <td>Photoshop</td>
-                                                    <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                    <td><label class="badge badge-danger">Pending</label></td>
-                                                </tr>
+                                                <?php foreach ($shoes as $shoe) { ?>
+                                                    <tr>
+                                                        <td>
+                                                            <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#show-modal<?= $shoe->id ?>">
+                                                                <i class="ti-eye"></i>
+                                                                
+                                                            </a>
+                                                            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal<?= $shoe->id ?>">
+                                                                <i class="ti-pencil-alt"></i>
+                                                            </a>
+                                                            <a type="button" class="btn btn-danger btn-sm">
+                                                                <i class="ti-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td><?= $shoe->shoes_name ?></td>
+                                                        <td><?= $shoe->category ?></td>
+                                                        <td class="text-success"> <i class="ti-money"></i><?= $shoe->price ?> </td>
+                                                        <td><?= $shoe->stock ?></td>
+                                                    </tr>
+                                                    <div class="modal fade" id="show-modal<?= $shoe->id ?>">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">View Product</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                        <img src="<?= base_url('shoes/'.$shoe->img) ?>" class="mw-100 w-100 rounded" alt="image">
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="row mb-0">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Shoes</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->shoes_name ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Brand</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->brand ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Category</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->category ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+
+                                                                                    <div class="form-group">
+                                                                                        <label>Color</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->color ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                            <div class="form-group">
+                                                                                <label>Description</label>
+                                                                                <textarea class="form-control" rows="3" disabled><?= $shoe->description ?></textarea>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Price</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->price ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Qty</label>
+                                                                                        <input type="text" class="form-control" value="<?= $shoe->stock ?>" disabled>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal fade" id="edit-modal<?= $shoe->id ?>">
+                                                        <div class="modal-dialog modal-xl">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Update Product</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="<?= base_url('admin/update_product?id='.$shoe->id); ?>" method="POST" enctype="multipart/form-data">
+                                                                    <input type="hidden" value="<?= $shoe->img ?>" name="default" >
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-6">
+                                                                                <!-- <input type="file" name="img"> -->
+                                                                                <input type="file" id="input-file-now-custom-2" class="dropify" data-height="400" name="img">
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="row mb-0">
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Shoes</label>
+                                                                                            <input type="text" class="form-control" value="<?= $shoe->shoes_name ?>" name="shoes" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Brand</label>
+                                                                                            <input type="text" class="form-control" value="<?= $shoe->brand ?>" name="brand" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Category</label>
+                                                                                            <select class="form-control" name="category" required>
+                                                                                                <option value="Sports">Sports</option>
+                                                                                                <option value="Running">Running</option>
+                                                                                                <option value="Snickers">Snickers</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+
+                                                                                        <div class="form-group">
+                                                                                            <label>Color</label>
+                                                                                            <input type="text" class="form-control" value="<?= $shoe->color ?>" name="color" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                                <div class="form-group">
+                                                                                    <label>Description</label>
+                                                                                    <textarea class="form-control" rows="3" placeholder="Enter ..." id="description" name="description"><?= $shoe->description ?></textarea>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Price</label>
+                                                                                            <input type="text" class="form-control" value="<?= $shoe->price ?>" name="price" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label>Qty</label>
+                                                                                            <input type="text" class="form-control"value="<?= $shoe->stock ?>"  name="qty" required>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-between">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -373,6 +580,7 @@
     <script src="<?= base_url('assets'); ?>/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="<?= base_url('assets'); ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
     <script src="<?= base_url('assets'); ?>/js/dataTables.select.min.js"></script>
+    <script src="<?= base_url('assets'); ?>/vendors/dropify/dropify.min.js"></script>
 
     <!-- End plugin js for this page -->
     <!-- inject:js -->
@@ -385,6 +593,145 @@
     <script src="<?= base_url('assets'); ?>/js/dashboard.js"></script>
     <script src="<?= base_url('assets'); ?>/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+    <script>
+        $(document).ready(function() {
+
+            //dropify //
+            $('.dropify').dropify();
+
+                $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+
+            var drEvent = $('#input-file-events').dropify();
+
+            drEvent.on('dropify.beforeClear', function(event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function(event, element) {
+                alert('File deleted');
+            });
+
+            drEvent.on('dropify.errors', function(event, element) {
+                console.log('Has Errors');
+            });
+
+            var drDestroy = $('#input-file-to-destroy').dropify();
+            drDestroy = drDestroy.data('dropify')
+            $('#toggleDropify').on('click', function(e) {
+                e.preventDefault();
+                if (drDestroy.isDropified()) {
+                    drDestroy.destroy();
+                } else {
+                    drDestroy.init();
+                }
+            })
+
+            function showNotification(from, align, type, message) {
+                $.notify({
+                    icon: "tim-icons icon-bell-55",
+                    message: message
+
+                }, {
+                    type: type,
+                    timer: 8000,
+                    placement: {
+                        from: from,
+                        align: align
+                    }
+                });
+            }
+
+            // @if (session()->has('notification'))
+            //     var notificationMessage = '{{ session('notification') }}';
+            //     showNotification('top', 'center', 'success', notificationMessage);
+            // @endif
+
+            $('#skillForm').submit(function(event) {
+                event.preventDefault();
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr('method'),
+                    url: form.attr('action'),
+                    data: form.serialize(),
+                    success: function(data) {
+                        window.location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+            $('#editSkill').submit(function(event) {});
+        });
+
+        $('.delete').on('click', function() {
+            let $this = $(this);
+            let deleteId = $this.data('id');
+
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3f51b5',
+                cancelButtonColor: '#ff4081',
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+                buttons: {
+                    cancel: {
+                        visible: true,
+                        className: "btn btn-danger",
+                    },
+                    confirm: {
+                        className: "btn btn-primary",
+                    }
+                }
+            }).then((confirmed) => {
+                if (confirmed) {
+                    let route = "{{ route('skill.destroy', '__id__') }}";
+                    route = route.replace('__id__', deleteId);
+
+                    $.ajax({
+                        url: route,
+                        type: "DELETE",
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        },
+                        success: function(data) {
+                            swal({
+                                title: 'Deleted!',
+                                text: 'Your data has been deleted successfully.',
+                                icon: 'success',
+                                button: 'OK',
+                            }).then(() => {
+                                location.reload(true); // Corrected reload statement
+                            });
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                } else {
+                    swal({
+                        title: 'Cancelled',
+                        text: 'Your data is safe.',
+                        icon: 'info',
+                        button: 'OK',
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
