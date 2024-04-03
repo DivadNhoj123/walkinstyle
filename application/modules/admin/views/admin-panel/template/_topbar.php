@@ -30,15 +30,40 @@
                         <i class="ti-settings text-primary"></i>
                         Settings
                     </a>
-                    <a href="<?= base_url('admin/logout'); ?>" class="dropdown-item logout">
+                    <a class="dropdown-item" data-toggle="modal" data-target="#logout">
                         <i class="ti-power-off text-primary"></i>
                         Logout
                     </a>
+
                 </div>
             </li>
         </ul>
+
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
             <span class="icon-menu"></span>
         </button>
     </div>
 </nav>
+<div class="modal fade" id="logout">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="col text-center">
+                    <i class="ti-user text-primary icon-lg"></i>
+
+                </div>
+                <div class="col text-center">
+                    <h4>
+                        Are you sure you want to logout?
+                    </h4>
+                </div>
+                <div class="col text-center">
+                    <div class="justify-content-between">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                        <a href=" <?= base_url('admin/logout'); ?>" class="btn btn-primary float-end ">Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
