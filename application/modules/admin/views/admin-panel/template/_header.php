@@ -11,7 +11,6 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets'); ?>js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/vertical-layout-light/style.css">
@@ -19,4 +18,6 @@
     <link rel="shortcut icon" href="<?= base_url('assets'); ?>images/favicon.png" />
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/dropify/dropify.min.css">
     <script src="<?= base_url('assets'); ?>/vendors/js/vendor.bundle.base.js"></script>
+    <script src="<?= base_url('assets'); ?>/vendors/datatables.net/jquery.dataTables.js"></script>
+
 </head>

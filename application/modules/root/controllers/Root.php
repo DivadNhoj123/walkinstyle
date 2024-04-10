@@ -7,12 +7,23 @@ class Root extends MX_Controller
 	{
 		parent::__construct();
 		$this->load->model(array('model'));
-		$this->load->library('nativesession');	
+		$this->load->library('nativesession');
+	}
+
+	function checkAccountNotNull()
+	{
+		$id = $this->nativesession->get('id');
+		if ($id == NULL) {
+			// $message = base64_encode("errorr~You must login first before you can acces the page.");
+			// redirect(base_url('?m='.$message));
+			redirect(base_url('/'));
+		}
 	}
 
 	public function index()
 	{
-		$this->load->view('landing_page');
+		$shoes['shoes'] = $this->model->getShoes();
+		$this->load->view('landing_page', $shoes);
 	}
 	public function login()
 	{
@@ -29,39 +40,39 @@ class Root extends MX_Controller
 		$lname = $this->input->post('lname');
 		$mi = $this->input->post('mi');
 		$address = $this->input->post('address');
-		$zipcode = $this->input->post('zipcode');
+		$zipcode = $this->input->post('zcode');
+		$country = $this->input->post('country');
 		$email = $this->input->post('email');
 		$phone = $this->input->post('phone');
 		$password = $this->input->post('password');
-		$re_password = $this->input->post('re_password');
+		$re_password = $this->input->post('re_pass');
 
 		if ($password == $re_password) {
-			$account_info =
-				[
-					'role' => 0,
-					'email' => $email,
-					'password' => base64_encode(md5($password)),
-				];
+			$account_info = [
+				'role' => 1,
+				'email' => $email,
+				'password' => base64_encode(md5($password)),
+			];
 			$account_id = $this->model->insertData('user_account', $account_info);
 
-			$user_info =
-				[
-					'account_id' => $account_id,
-					'first_name' => $fname,
-					'last_name' => $lname,
-					'middle_name' => $mi,
-					'address' => $address,
-					'zipcode' => $zipcode,
-					'phone' => $phone
-				];
-
+			$user_info = [
+				'account_id' => $account_id,
+				'first_name' => $fname,
+				'last_name' => $lname,
+				'middle_name' => $mi,
+				'address' => $address,
+				'zipcode' => $zipcode,
+				'country' => $country,
+				'phone' => $phone
+			];
 
 			if ($this->model->insertData('user_info', $user_info)) {
-				echo 'inserted';
+				$this->nativesession->set('id', $account_id);
+				redirect(base_url('root/shop'));
 			} else {
 			}
 		} else {
-			echo 'wrong';
+			echo 'Passwords do not match';
 		}
 	}
 
@@ -71,30 +82,112 @@ class Root extends MX_Controller
 		$password = $this->input->post('password');
 
 		$loginInfo =
-		[
-			'email' => $email,
-			'password' => base64_encode(md5($password))
-		];
+			[
+				'email' => $email,
+				'password' => base64_encode(md5($password))
+			];
 
 		$row = $this->model->CheckData($loginInfo);
 
-		if($row != NULL)
-		{
+		if ($row != NULL) {
 			$this->nativesession->set('id', $row->id);
 
-			if($row->role == 0)
-			{
+			if ($row->role == 0) {
 				redirect(base_url('admin/adminPanel'));
+			} elseif ($row->role == 1) {
+				redirect(base_url('root/shop'));
 			}
-			elseif($row->role == 1)
-			{
-				echo 'user ni';
-			}
-		}
-		else
-		{
+		} else {
 			echo 'wrong password';
 		}
+	}
+
+	public function shop()
+	{
+		$this->checkAccountNotNull();
+		$data = array(); // Initialize $data as an array
+		$id = $this->nativesession->get('id');
+		if ($id !== false) {
+			$data['id'] = $id; // Assign id if it exists in session
+		}
+		$data['shoes'] = $this->model->getShoes();
+		$this->load->view('shop', $data);
+	}
+
+	public function buy()
+	{
+		$product_id = $this->uri->segment(3);
+
+		$data['product'] = $this->model->getProductById($product_id);
+
+		$this->load->view('buy', $data);
+	}
+
+	public function order()
+	{
+		$this->checkAccountNotNull();
+		$data = $this->nativesession->get('id');
+		$data['shoes'] = $this->model->getShoes();
+		$this->load->view('order', $data);
+	}
+
+	public function checkout()
+	{
+		$this->checkAccountNotNull();
+		$data = array(); // Initialize $data as an array
+		$id = $this->nativesession->get('id');
+		if ($id !== false) {
+			$data['id'] = $id; // Assign id if it exists in session
+		}
+		$data['orders'] = $this->model->getCheckout($id);
+		$this->load->view('checkout', $data);
+	}
+
+	public function placeOrders()
+	{
+		$data = $this->nativesession->get('id');
+		$shoesId = $this->input->post('shoes_id');
+		$amount = $this->input->post('amount');
+		$orderQty = $this->input->post('order_qty');
+
+		$orders = [
+			'buyer_id' => $data,
+			'shoes_id' => $shoesId,
+			'shipping_fee' => 150,
+			'amount' => $amount,
+			'order_qty' => $orderQty,
+			'payment_method' => "none"
+		];
+		$orders = $this->model->InsertData('orders', $orders);
+
+		if ($orders) {
+			redirect(base_url('root/checkout/'));
+		} else {
+			// Set error flag if insertion fails
+			redirect(base_url('root/checkout/'));
+		}
+	}
+
+	public function checkout_Orders()
+	{
+		$data = $this->nativesession->get('id');
+		$payment_method = $this->input->post('cod');
+		$total_amount = $this->input->post('total_amount');
+
+		$orders = [
+			'buyer_id' => $data,
+			'total_amount' => $total_amount,
+			'payment_method' => $payment_method,
+			'order_date' => date('Y-m-d')
+		];
 		
+		$checkout = $this->model->InsertData('checkout', $orders);
+
+		if ($checkout) {
+			redirect(base_url('root/shop/'));
+		} else {
+			// Set error flag if insertion fails
+			redirect(base_url('root/checkout/'));
+		}
 	}
 }
