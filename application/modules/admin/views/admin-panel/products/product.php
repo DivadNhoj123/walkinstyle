@@ -22,13 +22,7 @@
                                         <div class="d-flex">
                                             <h4 class="card-title">Shoes List</h4>
                                         </div>
-                                        <div>
-                                            <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#add-modal">
-                                                <i class="ti-plus"></i>
-                                                Shoe
-                                            </a>
-                                            <?php $this->load->view('admin-panel/products/modals/add-modal'); ?>
-                                        </div>
+                                        <?php $this->load->view('admin-panel/products/modals/add-modal'); ?>
                                     </div>
                                     <div class="col-md-6">
                                         <?php if (isset($_GET['success']) && $_GET['success'] == 'true') {
@@ -77,7 +71,7 @@
 
                                     <div class="table-responsive">
 
-                                        <table class="table table-hover">
+                                        <table class="table table-hover table-striped" id="order-listing">
                                             <thead>
                                                 <tr>
                                                     <th>Action</th>
@@ -91,14 +85,14 @@
                                                 <?php foreach ($shoes as $shoe) { ?>
                                                     <tr>
                                                         <td>
-                                                            <a type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#show-modal<?= $shoe->id ?>">
+                                                            <a type="button" class="btn btn-primary btn-sm pt-2 pb-2" data-toggle="modal" data-target="#show-modal<?= $shoe->id ?>">
                                                                 <i class="ti-eye"></i>
 
                                                             </a>
-                                                            <a type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit-modal<?= $shoe->id ?>">
+                                                            <a type="button" class="btn btn-info btn-sm pt-2 pb-2" data-toggle="modal" data-target="#edit-modal<?= $shoe->id ?>">
                                                                 <i class="ti-pencil-alt"></i>
                                                             </a>
-                                                            <a type="button" class="btn btn-danger btn-sm delete-shoes" data-id="<?= $shoe->id ?>">
+                                                            <a type="button" class="btn btn-danger btn-sm delete-shoes pt-2 pb-2" data-id="<?= $shoe->id ?>">
                                                                 <i class="ti-trash"></i>
                                                             </a>
                                                         </td>

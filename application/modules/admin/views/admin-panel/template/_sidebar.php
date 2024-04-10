@@ -13,13 +13,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('admin/'); ?>">
+            <a class="nav-link" href="<?= base_url('admin/orders'); ?>">
                 <i class="ti-shopping-cart menu-icon"></i>
                 <span class="menu-title">Orders</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?= base_url('admin/client'); ?>">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Client</span>
             </a>
