@@ -12,3 +12,47 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="<?= base_url('assets/landingTemplate'); ?>/js/gmaps.min.js"></script>
 <script src="<?= base_url('assets/landingTemplate'); ?>/js/main.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart').on('click', function() {
+            var cart = $('.shopping-cart');
+            var imgtodrag = $(this).closest('.single-product').find(".standardized-image").eq(0);
+            if (imgtodrag) {
+                var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '100'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                    }, 1000, 'easeInOutExpo');
+
+                setTimeout(function() {
+                    cart.effect("shake", {
+                        times: 2
+                    }, 200);
+                }, 1500);
+
+                imgclone.animate({
+                    'width': 0,
+                    'height': 0
+                }, function() {
+                    $(this).detach()
+                });
+            }
+        });
+    });
+</script>
