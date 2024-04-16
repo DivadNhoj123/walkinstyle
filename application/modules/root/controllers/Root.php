@@ -25,6 +25,25 @@ class Root extends MX_Controller
 		$shoes['shoes'] = $this->model->getShoes();
 		$this->load->view('landing_page', $shoes);
 	}
+
+	public function test()
+	{
+		// $shoes['shoes'] = $this->model->getShoes();
+		$this->load->view('index');
+	}
+
+	public function products()
+	{
+		$shoes['shoes'] = $this->model->getShoes();
+		$this->load->view('products/product-page', $shoes);
+	}
+
+	public function cart()
+	{
+		$shoes['shoes'] = $this->model->getShoes();
+		$this->load->view('products/product-cart', $shoes);
+	}
+
 	public function login()
 	{
 		$this->load->view('login_page');
