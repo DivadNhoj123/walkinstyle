@@ -25,7 +25,6 @@
                                     </div>
 
                                     <div class="table-responsive">
-
                                         <table class="table table-hover table-striped" id="client-listing">
                                             <thead>
                                                 <tr>

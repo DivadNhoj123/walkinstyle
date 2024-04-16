@@ -19,15 +19,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('admin/client'); ?>">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">Client</span>
+            <a class="nav-link" href="<?= base_url('admin/'); ?>">
+                <i class="ti-truck menu-icon"></i>
+                <span class="menu-title">Courier</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('admin/'); ?>">
-                <i class="ti-money menu-icon"></i>
-                <span class="menu-title">Profits</span>
+            <a class="nav-link" href="<?= base_url('admin/client'); ?>">
+                <i class="ti-user menu-icon"></i>
+                <span class="menu-title">Client</span>
             </a>
         </li>
         <li class="nav-item">

@@ -7,7 +7,16 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
         </button>
-        <ul class="navbar-nav mr-lg-2">
+        <ul class="navbar-nav ">
+            <li class="nav-item nav-search d-none d-lg-block">
+                <a href="" class="nav-link">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="ti-shopping-cart"></i>
+                        </span>
+                    </div>
+                </a>
+            </li>
             <li class="nav-item nav-search d-none d-lg-block">
                 <div class="input-group">
                     <div class="input-group-prepend hover-cursor" id="navbar-search-icon">

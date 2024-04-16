@@ -19,8 +19,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item">
                                 <a href="#" class="cart" style="position: relative;">
-                                    <span class="ti-bag"></span>
-                                    <span style="position: absolute; top: -40px;" class="text-danger"><strong>1</strong></span>
+                                    <span class="ti-bag shopping-cart"></span>
+                                    <span style="position: absolute; top: -40px;" class="text-danger" id="cart-count"><strong>0</strong></span>
                                 </a>
                             </li>
 

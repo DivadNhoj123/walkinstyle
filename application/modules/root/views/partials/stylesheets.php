@@ -34,5 +34,30 @@
             object-fit: cover;
             /* Scale the image while maintaining aspect ratio and covering the entire container */
         }
+        
+        #description {
+            max-height: 300px;
+            overflow-y: auto;
+            text-align: justify;
+            padding: 10px;
+        }
+
+        #description::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #description::-webkit-scrollbar-thumb {
+            background-color: orange;
+            border-radius: 10px;
+        }
+
+        #description::-webkit-scrollbar-track {
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        #description::-webkit-scrollbar-button {
+            display: none;
+        }
     </style>
 </head>
