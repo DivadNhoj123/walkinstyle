@@ -1,6 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Model extends CI_Model {
 
+	function countCart($id) {
+		$this->db->where('cart.buyer_id', $id);
+		$this->db->from('cart');
+		return $this->db->count_all_results();
+	}
+	
+
 	function insertData($table, $data){
 		$this->db->insert($table,$data);
 		return $this->db->insert_id('id');
@@ -19,6 +26,13 @@ class Model extends CI_Model {
         return $this->db->get()->result();
     }
 	
+	function getCart($id){
+        $this->db->from('cart');
+		$this->db->join('shoes', 'shoes.id = cart.shoes_id');
+		$this->db->where('cart.buyer_id', $id);
+        return $this->db->get()->result();
+    }
+
 	function getProductById($product_id) {
         $this->db->where('id', $product_id);
         $query = $this->db->get('shoes');
