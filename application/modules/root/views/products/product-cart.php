@@ -1,198 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--begin::Head-->
 <?php $this->load->view('products/template/_header'); ?>
 
-<body class="sidebar-dark">
-    <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
-        <?php $this->load->view('products/template/_topbar'); ?>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_sidebar.html -->
-            <?php $this->load->view('products/template/_sidebar'); ?>
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8">
-                                    <h3 class="font-weight-bold">My Cart</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 grid-margin">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped" id="client-listing">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Product</th>
-                                                    <th></th>
-                                                    <th>Price</th>
-                                                    <th>Quantity</th>
-                                                    <th>Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($shoes as $shoe) { ?>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input type="checkbox" class="form-check-input">
-                                                                    <i class="input-helper"></i></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><img class="img-fluid standardized-image" src="<?= base_url('shoes/' . $shoe->img) ?>" alt="item"></td>
-                                                        <td><?= $shoe->shoes_name ?></td>
-                                                        <td><?= $shoe->price ?></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 grid-margin">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4>Your Order</h4>
-                                    <div class="border border-secondary mb-2"></div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <h6>Products</h6>
-                                        </div>
-                                        <div class="col-sm-4"></div>
-                                        <div class="col-sm-4">
-                                            <h6>Total</h6>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <p>Kyrie 12</p>
-                                        </div>
-                                        <div class="col-sm-4 text-center">x1</div>
-                                        <div class="col-sm-4">1,000</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <p>Shipping Fee</p>
-                                        </div>
-                                        <div class="col-sm-2"></div>
-                                        <div class="col-sm-4">150</div>
-                                    </div>
-                                    <div class="border border-secondary mb-2"></div>
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <h6>Sub - Total</h6>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <span class="badge badge-info" style="border-radius: 2px;">P 112</span>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-5">
-                                        <div class="col-sm-12">
-                                            <h6>Payment Method</h6>
-                                            <div class="row">
-                                                <div class="col-sm-12 mb-2">
-                                                    <button class="btn btn-outline-info  btn-block">
-                                                        <i class="ti-gcash"></i>
-                                                        G Cash  
-                                                    </button>
-                                                </div>
-                                                <div class="col-sm-12 mb-2">
-                                                    <button class="btn btn-outline-success  btn-block">
-                                                        <i class="ti-shopping-cart"></i>
-                                                        Pay Maya
-                                                    </button>
-                                                </div>
-                                                <div class="col-sm-12">
-                                                    <button class="btn btn-outline-secondary  btn-block">
-                                                        Cash On Delivery (COD)
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
+<body id="kt_body" data-kt-app-header-stacked="true" data-kt-app-header-primary-enabled="true" data-kt-app-header-secondary-enabled="true" data-kt-app-toolbar-enabled="true" class="app-default">
+	<script>
+		var defaultThemeMode = "light";
+		var themeMode;
+		if (document.documentElement) {
+			if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+				themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+			} else {
+				if (localStorage.getItem("data-bs-theme") !== null) {
+					themeMode = localStorage.getItem("data-bs-theme");
+				} else {
+					themeMode = defaultThemeMode;
+				}
+			}
+			if (themeMode === "system") {
+				themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+			}
+			document.documentElement.setAttribute("data-bs-theme", themeMode);
+		}
+	</script>
+	<!--begin::App-->
+	<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+		<!--begin::Page-->
+		<div class="app-page flex-column flex-column-fluid" id="kt_app_page">
 
-                                    </div>
-                                    <button class="btn btn-block btn-success">
-                                        <i class="ti-shopping-cart"></i>
-                                        Check out
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. Walk N Style. All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with Krischel</span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <?php $this->load->view('products/template/_script'); ?>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.add-to-cart').on('click', function() {
-                var cart = $('.shopping-cart');
-                var imgtodrag = $(this).closest('.single-product').find(".standardized-image").eq(0);
-                if (imgtodrag) {
-                    var imgclone = imgtodrag.clone()
-                        .offset({
-                            top: imgtodrag.offset().top,
-                            left: imgtodrag.offset().left
-                        })
-                        .css({
-                            'opacity': '0.5',
-                            'position': 'absolute',
-                            'height': '150px',
-                            'width': '150px',
-                            'z-index': '100'
-                        })
-                        .appendTo($('body'))
-                        .animate({
-                            'top': cart.offset().top + 10,
-                            'left': cart.offset().left + 10,
-                            'width': 75,
-                            'height': 75
-                        }, 1000, 'easeInOutExpo');
+			<?php $this->load->view('products/template/_topbar'); ?>
 
-                    setTimeout(function() {
-                        cart.effect("shake", {
-                            times: 2
-                        }, 200);
-                    }, 1500);
+			<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+				<!--begin::Wrapper container-->
+				<div class="app-container container-xxl d-flex flex-row flex-column-fluid">
+					<!--begin::Main-->
+					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+						<!--begin::Content wrapper-->
+						<div class="d-flex flex-column flex-column-fluid">
+							<!--begin::Content-->
+							<div id="kt_app_content" class="app-content pb-0">
+								<!--begin::Row-->
+								<div class="row gy-5 g-xl-10">
+									<div class="col-xl-8">
+										<!--begin::List widget 5-->
+										<div class="card card-flush h-xl-100">
+											<!--begin::Header-->
+											<div class="card-header pt-7">
+												<!--begin::Title-->
+												<h3 class="card-title align-items-start flex-column">
+													<span class="card-label fw-bold text-dark">Cart</span>
+													<span class="text-gray-400 mt-1 fw-semibold fs-6">Select your desired products to checkout.</span>
+												</h3>
+												<!--end::Title-->
+												<!--begin::Toolbar-->
+												<div class="card-toolbar">
+													<a href="#" class="btn btn-sm btn-light">Select All</a>
+												</div>
+												<!--end::Toolbar-->
+											</div>
+											<!--end::Header-->
+											<!--begin::Body-->
+											<div class="card-body">
+												<!--begin::Scroll-->
+												<div class="hover-scroll-overlay-y pe-6 me-n6" style="height: 415px">
+													<?php
+														$i = 0;
+														foreach ($on_cart as $cart) {
+														$i++; ?>
 
-                    imgclone.animate({
-                        'width': 0,
-                        'height': 0
-                    }, function() {
-                        $(this).detach()
-                    });
-                }
-            });
-        });
-    </script>
+														<!--begin::Item-->
+														<div class="border border-dashed border-gray-300 rounded px-7 py-3 mb-6">
+															<!--begin::Info-->
+															<div class="d-flex flex-stack mb-3">
+																<!--begin::Wrapper-->
+																<div class="me-3">
+																	<!--begin::Icon-->
+																	<img src="<?= base_url('shoes/' . $cart->img) ?>" class="w-50px ms-n1 me-1" alt="">
+																	<!--end::Icon-->
+																	<!--begin::Title-->
+																	<a href="#" class="text-gray-800 text-hover-primary fw-bold"><?= $cart->shoes_name ?></a>
+																	<!--end::Title-->
+																</div>
+																<!--end::Wrapper-->
+																<!--begin::Action-->
+																<div class="m-0">
+																	<!--begin::Menu-->
+																	<button class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end" data-kt-menu-overflow="true">
+																		<i class="ki-duotone ki-dots-square fs-1">
+																			<span class="path1"></span>
+																			<span class="path2"></span>
+																			<span class="path3"></span>
+																			<span class="path4"></span>
+																		</i>
+																	</button>
+																	<!--begin::Menu 2-->
+																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px" data-kt-menu="true">
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3">
+																			<div class="menu-content fs-6 text-dark fw-bold px-3 py-4">Quick Actions</div>
+																		</div>
+																		<!--end::Menu item-->
+																		<!--begin::Menu separator-->
+																		<div class="separator mb-3 opacity-75"></div>
+																		<!--end::Menu separator-->
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3">
+																			<a href="#" class="menu-link px-3">New Ticket</a>
+																		</div>
+																		<!--end::Menu item-->
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3">
+																			<a href="#" class="menu-link px-3">New Customer</a>
+																		</div>
+																		<!--end::Menu item-->
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3" data-kt-menu-trigger="hover" data-kt-menu-placement="right-start">
+																			<!--begin::Menu item-->
+																			<a href="#" class="menu-link px-3">
+																				<span class="menu-title">New Group</span>
+																				<span class="menu-arrow"></span>
+																			</a>
+																			<!--end::Menu item-->
+																			<!--begin::Menu sub-->
+																			<div class="menu-sub menu-sub-dropdown w-175px py-4">
+																				<!--begin::Menu item-->
+																				<div class="menu-item px-3">
+																					<a href="#" class="menu-link px-3">Admin Group</a>
+																				</div>
+																				<!--end::Menu item-->
+																				<!--begin::Menu item-->
+																				<div class="menu-item px-3">
+																					<a href="#" class="menu-link px-3">Staff Group</a>
+																				</div>
+																				<!--end::Menu item-->
+																				<!--begin::Menu item-->
+																				<div class="menu-item px-3">
+																					<a href="#" class="menu-link px-3">Member Group</a>
+																				</div>
+																				<!--end::Menu item-->
+																			</div>
+																			<!--end::Menu sub-->
+																		</div>
+																		<!--end::Menu item-->
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3">
+																			<a href="#" class="menu-link px-3">New Contact</a>
+																		</div>
+																		<!--end::Menu item-->
+																		<!--begin::Menu separator-->
+																		<div class="separator mt-3 opacity-75"></div>
+																		<!--end::Menu separator-->
+																		<!--begin::Menu item-->
+																		<div class="menu-item px-3">
+																			<div class="menu-content px-3 py-3">
+																				<a class="btn btn-primary btn-sm px-4" href="#">Generate Reports</a>
+																			</div>
+																		</div>
+																		<!--end::Menu item-->
+																	</div>
+																	<!--end::Menu 2-->
+																	<!--end::Menu-->
+																</div>
+																<!--end::Action-->
+															</div>
+															<!--end::Info-->
+															<!--begin::Customer-->
+															<div class="d-flex flex-stack">
+																<!--begin::Name-->
+																<span class="text-gray-400 fw-bold">Qty:
+																	<a  class="text-gray-800 text-hover-primary fw-bold">
+																		<span class="badge badge-danger" id="minusBtn<?= $i ?>"><i class="ti-minus"></i></span>
+																		<input type="text" id="quantityInput<?= $i ?>" class="col-sm-2 text-center" style="height: 20px;" value="<?= $cart->product_qty ?>">
+																		<span class="badge badge-info" id="plusBtn<?= $i ?>"><i class="ti-plus"></i></span>
+																	</a>
+																</span>
+																<!--end::Name-->
+																<!--begin::Label-->
+																<span class="badge badge-light-success"><?= $cart->price ?></span>
+																<!--end::Label-->
+															</div>
+															<!--end::Customer-->
+														</div>
+														<!--end::Item-->
+														<!--begin::Item-->
+													<?php } ?>
+												</div>
+												<!--end::Scroll-->
+											</div>
+											<!--end::Body-->
+										</div>
+										<!--end::List widget 5-->
+									</div>
+								</div>
+								<!--end::Row-->
+							</div>
+							<!--end::Content-->
+						</div>
+						<!--end::Content wrapper-->
+
+						<?php $this->load->view('products/template/_footer'); ?>
+					</div>
+				</div>
+				<!--end::Wrapper container-->
+			</div>
+		</div>
+		<!--end::Page-->
+	</div>
+	<!--end::App-->
+	<?php $this->load->view('products/template/_script'); ?>
 </body>
+<!--end::Body-->
 
 </html>

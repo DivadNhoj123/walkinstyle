@@ -1,110 +1,186 @@
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="<?= base_url('assets'); ?>/vendors/chart.js/Chart.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="<?= base_url('assets'); ?>/js/dataTables.select.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendors/dropify/dropify.min.js"></script>
-<script src="<?= base_url('assets'); ?>/js/file-upload.js"></script>
-
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="<?= base_url('assets'); ?>/js/off-canvas.js"></script>
-<script src="<?= base_url('assets'); ?>/js/hoverable-collapse.js"></script>
-<script src="<?= base_url('assets'); ?>/js/template.js"></script>
-<script src="<?= base_url('assets'); ?>/js/settings.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="<?= base_url('assets'); ?>/js/dashboard.js"></script>
-<script src="<?= base_url('assets'); ?>/js/Chart.roundedBarCharts.js"></script>
-<!-- End custom js for this page-->
-
+<!--begin::Javascript-->
 <script>
-    (function($) {
-        'use strict';
-        $('.dropify').dropify();
-    })(jQuery);
-
-    // Function to handle previewing image for a specific modal
-    function previewImage(event, shoeId) {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                const preview = document.getElementById('previewImage' + shoeId);
-                preview.src = e.target.result;
+    var hostUrl = "<?= base_url('assets/tem-plate'); ?>/";
+</script>
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="<?= base_url('assets/tem-plate'); ?>/plugins/global/plugins.bundle.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="<?= base_url('assets/tem-plate'); ?>/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/plugins/custom/datatables/datatables.bundle.js"></script>
+<!--end::Vendors Javascript-->
+<!--begin::Custom Javascript(used for this page only)-->
+<script src="<?= base_url('assets/tem-plate'); ?>/js/widgets.bundle.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/apps/chat/chat.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/type.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/budget.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/settings.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/team.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/targets.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/files.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/complete.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/create-project/main.js"></script>
+<script src="<?= base_url('assets/tem-plate'); ?>/js/custom/utilities/modals/users-search.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart').on('click', function() {
+            var cart = $('.shopping-cart');
+            if (cart.length === 0) {
+                console.error("Shopping cart element not found");
+                return; // Exit the function if shopping cart element is not found
             }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
 
-    // Loop through each file input and bind the event listener
-    document.querySelectorAll('[id^="imageInput"]').forEach(item => {
-        const shoeId = item.id.replace('imageInput', ''); // Extract shoe id
-        item.addEventListener('change', (event) => previewImage(event, shoeId));
+            var imgtodrag = $(this).closest('.card').find(".standardized-image").eq(0);
+            if (imgtodrag.length === 0) {
+                console.error("Image to drag not found");
+                return; // Exit the function if image to drag is not found
+            }
+
+            var imgclone = imgtodrag.clone()
+                .offset({
+                    top: imgtodrag.offset().top,
+                    left: imgtodrag.offset().left
+                })
+                .css({
+                    'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '100'
+                })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+                }, 1000, 'easeInOutExpo');
+
+            setTimeout(function() {
+                cart.effect("shake", {
+                    times: 2
+                }, 200);
+            }, 1500);
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function() {
+                $(this).detach()
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('.add-to-cart').on('click', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = $(this).closest('form').serialize(); // Serialize form data
+            $.ajax({
+                type: 'POST',
+                url: $(this).closest('form').attr('action'), // Get form action URL
+                data: formData,
+                success: function(response) {
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                }
+            });
+        });
     });
 </script>
-<script>
-    (function($) {
-        'use strict';
-        $(function() {
-            // Initialize the DataTable
-            var dataTable = $('#order-listing').DataTable({
-                "aLengthMenu": [
-                    [5, 10, 15, -1],
-                    [5, 10, 15, "All"]
-                ],
-                "iDisplayLength": 5,
-                "language": {
-                    search: ""
-                }
-            });
 
-            // Find the search input field
-            var searchInput = $('#order-listing_filter').find('input');
-
-            // Create the button element (anchor tag)
-            var button = $('<a/>', {
-                'class': 'btn btn-sm btn-success ml-1', // Set the class of the anchor tag
-                'data-toggle': 'modal', // Add data-toggle attribute
-                'data-target': '#add-modal', // Add data-target attribute
-                html: '<i class="ti-plus"></i> Shoe' // Set the inner HTML content of the anchor tag
-            });
-
-            // Append the button next to the search input
-            searchInput.after(button);
-
-            // Add placeholder for the search input
-            searchInput.attr('placeholder', 'Search');
-
-            // Remove the form-control-sm class from length select element
-            $('#order-listing_length').find('select').removeClass('form-control-sm');
-        });
-
-        $(function() {
-            $('#client-listing').DataTable({
-                "aLengthMenu": [
-                    [5, 10, 15, -1],
-                    [5, 10, 15, "All"]
-                ],
-                "iDisplayLength": 5,
-                "language": {
-                    search: ""
-                }
-            });
-            $('#client-listing').each(function() {
-                var datatable = $(this);
-                // SEARCH - Add the placeholder for Search and Turn this into in-line form control
-                var search_input = datatable.closest('.dataTables_wrapper').find(
-                    'div[id$=_filter] input');
-                search_input.attr('placeholder', 'Search');
-                search_input.removeClass('form-control-sm');
-                // LENGTH - Inline-Form control
-                var length_sel = datatable.closest('.dataTables_wrapper').find(
-                    'div[id$=_length] select');
-                length_sel.removeClass('form-control-sm');
-            });
-        });
-    })(jQuery);
 </script>
-<
+<script>
+    // Get the cart count element
+    var cartCountElement = document.getElementById("cart-count");
+
+    // Check if the cart count is equal to 0
+    if (parseInt("<?php echo $cart; ?>") === 0) {
+        // If count is 0, hide the element
+        cartCountElement.style.display = "none";
+    } else {
+        // If count is not 0, show the element
+        cartCountElement.style.display = "inline"; // or "block", depending on its original display property
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        <?php foreach ($on_cart as $i => $cart) { ?>
+                (function() {
+                    const index = <?= $i ?>;
+                    console.log("Processing cart item at index:", index);
+
+                    // Get references to the input field and buttons for this specific cart item
+                    const quantityInput = document.getElementById('quantityInput<?= $i ?>');
+                    const minusBtn = document.getElementById('minusBtn<?= $i ?>');
+                    const plusBtn = document.getElementById('plusBtn<?= $i ?>');
+
+                    console.log("Quantity Input:", quantityInput);
+                    console.log("Minus Button:", minusBtn);
+                    console.log("Plus Button:", plusBtn);
+
+                    // Add click event listeners to the plus and minus buttons if elements exist
+                    if (quantityInput && minusBtn && plusBtn) {
+                        minusBtn.addEventListener('click', () => {
+                            decreaseQuantity();
+                        });
+
+                        plusBtn.addEventListener('click', () => {
+                            increaseQuantity();
+                        });
+
+                        // Add blur event listener to the input field
+                        quantityInput.addEventListener('blur', () => {
+                            // Get the current value of the input field
+                            let currentValue = parseInt(quantityInput.value);
+                            // If the input field value is less than 1 or NaN, set it to 1
+                            if (currentValue < 1 || isNaN(currentValue)) {
+                                quantityInput.value = '1';
+                            }
+                        });
+
+                        // Function to decrease quantity
+                        function decreaseQuantity() {
+                            // Get the current value of the input field
+                            let currentValue = parseInt(quantityInput.value);
+                            // Decrease the value by 1, ensuring it never goes below 1
+                            if (currentValue > 1) {
+                                quantityInput.value = currentValue - 1;
+                            }
+                        }
+
+                        // Function to increase quantity
+                        function increaseQuantity() {
+                            // Get the current value of the input field
+                            let currentValue = parseInt(quantityInput.value);
+                            // Increase the value by 1
+                            quantityInput.value = currentValue + 1;
+                        }
+                    } else {
+                        console.error("Some elements not found for cart item at index:", index);
+                    }
+                })();
+        <?php } ?>
+    });
+</script>
+
+
+<!--end::Custom Javascript-->
+<!--end::Javascript-->

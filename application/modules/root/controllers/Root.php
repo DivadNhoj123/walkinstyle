@@ -26,24 +26,6 @@ class Root extends MX_Controller
 		$this->load->view('landing_page', $shoes);
 	}
 
-	public function test()
-	{
-		// $shoes['shoes'] = $this->model->getShoes();
-		$this->load->view('index');
-	}
-
-	public function products()
-	{
-		$shoes['shoes'] = $this->model->getShoes();
-		$this->load->view('products/product-page', $shoes);
-	}
-
-	public function cart()
-	{
-		$shoes['shoes'] = $this->model->getShoes();
-		$this->load->view('products/product-cart', $shoes);
-	}
-
 	public function login()
 	{
 		$this->load->view('login_page');
@@ -114,34 +96,30 @@ class Root extends MX_Controller
 			if ($row->role == 0) {
 				redirect(base_url('admin/adminPanel'));
 			} elseif ($row->role == 1) {
-				redirect(base_url('root/shop'));
+				redirect(base_url('root/products'));
 			}
 		} else {
 			echo 'wrong password';
 		}
 	}
 
-	public function shop()
+	public function test()
 	{
-		$this->checkAccountNotNull();
-		$data = array(); // Initialize $data as an array
+		// $shoes['shoes'] = $this->model->getShoes();
+		$this->load->view('index');
+	}
+
+	public function products()
+	{
 		$id = $this->nativesession->get('id');
-		if ($id !== false) {
-			$data['id'] = $id; // Assign id if it exists in session
-		}
+		$data['cart'] = $this->model->countCart($id);
 		$data['shoes'] = $this->model->getShoes();
-		$this->load->view('shop', $data);
+		$this->load->view('products/product-page', $data);
 	}
 
-	public function buy()
-	{
-		$product_id = $this->uri->segment(3);
+	
 
-		$data['product'] = $this->model->getProductById($product_id);
-
-		$this->load->view('buy', $data);
-	}
-
+	
 	public function order()
 	{
 		$this->checkAccountNotNull();
@@ -160,6 +138,34 @@ class Root extends MX_Controller
 		}
 		$data['orders'] = $this->model->getCheckout($id);
 		$this->load->view('checkout', $data);
+	}
+
+	public function add_cart()
+	{
+		$data = $this->nativesession->get('id');
+		$shoesId = $this->input->post('shoes_id');
+		$add_cart = [
+			'buyer_id' => $data,
+			'shoes_id' => $shoesId,
+			'product_qty' => 1,
+		];
+		$orders = $this->model->InsertData('cart', $add_cart);
+
+		if ($orders) {
+			// Return success response
+			echo json_encode(['success' => true]);
+		} else {
+			// Return error response
+			echo json_encode(['success' => false]);
+		}
+	}
+
+	public function cart()
+	{
+		$id = $this->nativesession->get('id');
+		$data['cart'] = $this->model->countCart($id);
+		$data['on_cart'] = $this->model->getCart($id);
+		$this->load->view('products/product-cart', $data);
 	}
 
 	public function placeOrders()
@@ -199,7 +205,7 @@ class Root extends MX_Controller
 			'payment_method' => $payment_method,
 			'order_date' => date('Y-m-d')
 		];
-		
+
 		$checkout = $this->model->InsertData('checkout', $orders);
 
 		if ($checkout) {
