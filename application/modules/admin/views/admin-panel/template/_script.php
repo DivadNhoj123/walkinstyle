@@ -1,110 +1,55 @@
-<!-- endinject -->
-<!-- Plugin js for this page -->
-<script src="<?= base_url('assets'); ?>/vendors/chart.js/Chart.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="<?= base_url('assets'); ?>/js/dataTables.select.min.js"></script>
-<script src="<?= base_url('assets'); ?>/vendors/dropify/dropify.min.js"></script>
-<script src="<?= base_url('assets'); ?>/js/file-upload.js"></script>
-
-<!-- End plugin js for this page -->
-<!-- inject:js -->
-<script src="<?= base_url('assets'); ?>/js/off-canvas.js"></script>
-<script src="<?= base_url('assets'); ?>/js/hoverable-collapse.js"></script>
-<script src="<?= base_url('assets'); ?>/js/template.js"></script>
-<script src="<?= base_url('assets'); ?>/js/settings.js"></script>
-<!-- endinject -->
-<!-- Custom js for this page-->
-<script src="<?= base_url('assets'); ?>/js/dashboard.js"></script>
-<script src="<?= base_url('assets'); ?>/js/Chart.roundedBarCharts.js"></script>
-<!-- End custom js for this page-->
-
 <script>
-    (function($) {
-        'use strict';
-        $('.dropify').dropify();
-    })(jQuery);
+    var hostUrl = "<?= base_url('template'); ?>/";
+</script>
+<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+<script src="<?= base_url('template'); ?>/plugins/global/plugins.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/js/scripts.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="<?= base_url('template'); ?>/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/plugins/custom/formrepeater/formrepeater.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/js/widgets.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/custom/widgets.js"></script>
+<!--end::Vendors Javascript-->
+<!--begin::Custom Javascript(used for this page only)-->
+<script src="<?= base_url('template'); ?>/js/widgets.bundle.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/widgets.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/apps/chat/chat.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/utilities/modals/create-account.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/utilities/modals/create-app.js"></script>
+<script src="<?= base_url('template'); ?>/js/custom/utilities/modals/users-search.js"></script>
+<!--end::Custom Javascript-->
+<script>
+    // Get the current URL
+    const currentUrl = window.location.href;
 
-    // Function to handle previewing image for a specific modal
-    function previewImage(event, shoeId) {
-        const input = event.target;
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
+    // Get all menu links
+    const menuLinks = document.querySelectorAll('.menu-link');
 
-            reader.onload = function(e) {
-                const preview = document.getElementById('previewImage' + shoeId);
-                preview.src = e.target.result;
-            }
-            reader.readAsDataURL(input.files[0]);
+    // Add click event listener to each menu link
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            // Remove active class from all menu links
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add active class to the clicked menu link
+            this.classList.add('active');
+        });
+    });
+
+    // Set active class based on current URL
+    menuLinks.forEach(link => {
+        // Get the href attribute of the menu link
+        const href = link.getAttribute('href');
+
+        // Check if the href matches the current URL
+        if (currentUrl === href) {
+            // Add active class to the menu link
+            link.classList.add('active');
         }
-    }
-
-    // Loop through each file input and bind the event listener
-    document.querySelectorAll('[id^="imageInput"]').forEach(item => {
-        const shoeId = item.id.replace('imageInput', ''); // Extract shoe id
-        item.addEventListener('change', (event) => previewImage(event, shoeId));
     });
 </script>
-<script>
-    (function($) {
-        'use strict';
-        $(function() {
-            // Initialize the DataTable
-            var dataTable = $('#order-listing').DataTable({
-                "aLengthMenu": [
-                    [5, 10, 15, -1],
-                    [5, 10, 15, "All"]
-                ],
-                "iDisplayLength": 5,
-                "language": {
-                    search: ""
-                }
-            });
-
-            // Find the search input field
-            var searchInput = $('#order-listing_filter').find('input');
-
-            // Create the button element (anchor tag)
-            var button = $('<a/>', {
-                'class': 'btn btn-sm btn-success ml-1', // Set the class of the anchor tag
-                'data-toggle': 'modal', // Add data-toggle attribute
-                'data-target': '#add-modal', // Add data-target attribute
-                html: '<i class="ti-plus"></i> Shoe' // Set the inner HTML content of the anchor tag
-            });
-
-            // Append the button next to the search input
-            searchInput.after(button);
-
-            // Add placeholder for the search input
-            searchInput.attr('placeholder', 'Search');
-
-            // Remove the form-control-sm class from length select element
-            $('#order-listing_length').find('select').removeClass('form-control-sm');
-        });
-
-        $(function() {
-            $('#client-listing').DataTable({
-                "aLengthMenu": [
-                    [5, 10, 15, -1],
-                    [5, 10, 15, "All"]
-                ],
-                "iDisplayLength": 5,
-                "language": {
-                    search: ""
-                }
-            });
-            $('#client-listing').each(function() {
-                var datatable = $(this);
-                // SEARCH - Add the placeholder for Search and Turn this into in-line form control
-                var search_input = datatable.closest('.dataTables_wrapper').find(
-                    'div[id$=_filter] input');
-                search_input.attr('placeholder', 'Search');
-                search_input.removeClass('form-control-sm');
-                // LENGTH - Inline-Form control
-                var length_sel = datatable.closest('.dataTables_wrapper').find(
-                    'div[id$=_length] select');
-                length_sel.removeClass('form-control-sm');
-            });
-        });
-    })(jQuery);
-</script>
-<

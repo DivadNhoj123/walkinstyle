@@ -18,7 +18,7 @@
                     <!--begin::Logo-->
                     <a href="../dist/index.html" class="d-flex align-items-center mb-1 mb-lg-0 pt-lg-1">
                         <img alt="Logo" src="<?= base_url('assets'); ?>/logo/1.png" class="d-block d-sm-none" />
-                        <img alt="Logo" src="<?= base_url('assets'); ?>/logo/1.png" class="d-none d-sm-block" style="height: 200px;" />
+                        <img alt="Logo" src="<?= base_url('assets'); ?>/logo/1.png" class="d-none d-sm-block mb-5" style="height: 150px;" />
                         <h1 class="display-4 text-primary">Walk <strong class="text-warning">N</strong> Style</h1>
                     </a>
                     <!--end::Logo-->
