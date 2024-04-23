@@ -118,8 +118,6 @@ class Root extends MX_Controller
 	}
 
 	
-
-	
 	public function order()
 	{
 		$this->checkAccountNotNull();
@@ -128,18 +126,7 @@ class Root extends MX_Controller
 		$this->load->view('order', $data);
 	}
 
-	public function checkout()
-	{
-		$this->checkAccountNotNull();
-		$data = array(); // Initialize $data as an array
-		$id = $this->nativesession->get('id');
-		if ($id !== false) {
-			$data['id'] = $id; // Assign id if it exists in session
-		}
-		$data['orders'] = $this->model->getCheckout($id);
-		$this->load->view('checkout', $data);
-	}
-
+	// handles add to cart method
 	public function add_cart()
 	{
 		$data = $this->nativesession->get('id');
@@ -159,6 +146,31 @@ class Root extends MX_Controller
 			echo json_encode(['success' => false]);
 		}
 	}
+	// end handling add to cart method
+
+	// handles checkout methods
+	public function checkout() {
+        // Get selected orders and their quantities
+        $selectedOrders = $this->input->post('order');
+        $quantities = $this->input->post('quantity');
+
+        // Combine selected orders and quantities into an array of arrays
+        $data = [];
+        for ($i = 0; $i < count($selectedOrders); $i++) {
+            $data[] = array(
+                'shoes_id' => $selectedOrders[$i],
+                'order_qty' => $quantities[$i]
+            );
+        }
+
+		// var_dump($data);exit;
+        // Insert orders into the database
+        $this->model->insert_orders($data);
+
+        // Redirect or show success message
+        redirect('checkout/success');
+    }
+	// end handling checkout method
 
 	public function cart()
 	{

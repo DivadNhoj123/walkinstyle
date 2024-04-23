@@ -49,14 +49,14 @@
 															<img class="img-fluid standardized-image" src="<?= base_url('shoes/' . $shoe->img) ?>" alt="item">
 															<div class="border border-bottom border-secondary mb-2 mt-2"></div>
 															<div class="row">
-																<div class="col-sm-6">
+																<div class="col-sm-4">
 																	<h4 class="fw-bold">
 																		P <?= $shoe->price ?>
 																	</h4>
 																</div>
-																<div class="col-sm-6">
+																<div class="col-sm-8">
 																	<input type="hidden" name="shoes_id" value="<?= $shoe->id ?>">
-																	<button type="submit" class="btn btn-sm btn-primary add-to-cart">
+																	<button type="submit" class="btn btn-md btn-primary add-to-cart">
 																		<i class="ti-shopping-cart"></i>
 																		Add Cart
 																	</button>

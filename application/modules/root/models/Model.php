@@ -33,23 +33,9 @@ class Model extends CI_Model {
         return $this->db->get()->result();
     }
 
-	function getProductById($product_id) {
-        $this->db->where('id', $product_id);
-        $query = $this->db->get('shoes');
-
-        if ($query->num_rows() > 0) {
-            return $query->row();
-        } else {
-            return null;
-        }
+	// handles checkout orders method
+	public function insert_orders($data) {
+        $this->db->insert_batch('orders', $data);
     }
-	
-	function getCheckout(){
-		$this->db->from('orders');
-		$this->db->join('shoes', 'shoes.id = orders.shoes_id');
-		$this->db->join('user_info', 'user_info.account_id = orders.buyer_id');
-		$this->db->join('user_account', 'user_account.id = orders.buyer_id');
-		$this->db->where('status', 'place order');
-		return $this->db->get()->result();
-	}
+	// end handling checkout method
 }

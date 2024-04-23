@@ -24,17 +24,38 @@ class Admin extends MX_Controller
         $this->load->view('admin-panel/dashboard/admin-dashboard', $id);
     }
 
+    //handles for products routes
     public function product()
     {
         $shoes['shoes'] = $this->model->getShoes();
         $this->load->view('admin-panel/products/product', $shoes);
     }
+    public function productAdd()
+    {
+        $this->load->view('admin-panel/products/product-add');
+    }
+    public function productEdit($id)
+    {
+        $product['product'] = $this->model->productEdits($id);
+        $this->load->view('admin-panel/products/product-edit', $product);
+    }
+    //end handling for products routes
 
+    //handles orders routes
     public function orders()
     {
         $order['orders'] = $this->model->getOrders();
         $this->load->view('admin-panel/orders/order', $order);
     }
+    public function viewOrders($id)
+    {
+        $data['orders'] = $this->model->orderView($id); // Assuming you have an orderView method in your model
+        $data['products'] = $this->model->filterOrders($id); // Assuming you have a getOrders method in your model to retrieve products for a specific order
+        $this->load->view('admin-panel/orders/view-order', $data);
+    }
+
+
+    //end hamdling for orders routes
 
     public function client()
     {
@@ -45,8 +66,8 @@ class Admin extends MX_Controller
     public function add_product()
     {
 
-        $shoes = $this->input->post('shoes');
-        $brand = $this->input->post('brand');
+        $shoes = $this->input->post('product_name');
+        $brand = $this->input->post('product_brand');
         $category = $this->input->post('category');
         $color = $this->input->post('color');
         $description = $this->input->post('description');
@@ -55,7 +76,7 @@ class Admin extends MX_Controller
 
         if ($_FILES['img']['name']) {
             $config['upload_path'] = './shoes/'; // set the directory path
-            $config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|PNG|JPEG'; // allowed file types
+            $config['allowed_types'] = 'gif|jpg|jpeg|png'; // allowed file types
             $config['max_size'] = 2048; // max file size in KB
 
             // Load upload library and initialize
@@ -76,6 +97,7 @@ class Admin extends MX_Controller
             // No file is selected
             $image = '';
         }
+
         $add_shoes = [
 
             'shoes_name' => $shoes,
@@ -103,14 +125,14 @@ class Admin extends MX_Controller
 
     public function update_product($id)
     {
-        $shoes = $this->input->post('shoes');
-        $brand = $this->input->post('brand');
+        $product_name = $this->input->post('product_name');
+        $product_brand = $this->input->post('product_brand');
         $category = $this->input->post('category');
         $color = $this->input->post('color');
         $description = $this->input->post('description');
         $price = $this->input->post('price');
         $qty = $this->input->post('qty');
-        $default = $this->input->post('default');
+        $recent_img = $this->input->post('recent_img');
 
 
         if ($_FILES['img']['name'][0]) {
@@ -134,11 +156,11 @@ class Admin extends MX_Controller
             }
         } else {
             // No file is selected
-            $image = $default;
+            $image = $recent_img;
         }
         $update_product = [
-            'shoes_name' => $shoes,
-            'brand' => $brand,
+            'shoes_name' => $product_name,
+            'brand' => $product_brand,
             'category' => $category,
             'color' => $color,
             'description' => $description,
@@ -161,24 +183,25 @@ class Admin extends MX_Controller
 
             $this->model->deleteData('shoes', $condition);
 
-            $response = array('success' => true, 'message' => 'Candidate deleted successfully.');
+            $response = array('success' => true, 'message' => 'Product deleted successfully.');
             echo json_encode($response);
         } else {
             show_404();
         }
     }
 
+
     public function delete_client()
     {
         if ($this->input->is_ajax_request()) {
             $client_id = $this->input->post('client_id');
-    
+
             $where = array('id' => $client_id);
 
             $this->model->deleteData('user_account', $where);
-    
+
             $this->model->deleteData('user_info', $where);
-    
+
             $response = array('success' => true, 'message' => 'Client deleted successfully.');
             echo json_encode($response);
         } else {
