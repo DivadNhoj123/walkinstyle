@@ -117,7 +117,7 @@ class Root extends MX_Controller
 		$this->load->view('products/product-page', $data);
 	}
 
-	
+
 	public function order()
 	{
 		$this->checkAccountNotNull();
@@ -149,27 +149,53 @@ class Root extends MX_Controller
 	// end handling add to cart method
 
 	// handles checkout methods
-	public function checkout() {
-        // Get selected orders and their quantities
-        $selectedOrders = $this->input->post('order');
-        $quantities = $this->input->post('quantity');
+	public function checkout()
+	{
+		$id = $this->nativesession->get('id');
+		$selectedOrders = $this->input->post('order');
+		$quantities = $this->input->post('quantity');
+		$payment_methods = $this->input->post('payment_method');
+		$amount = $this->input->post('amount');
+		$recipient = $this->input->post('recipient');
+		$address = $this->input->post('recip_address');
+		$province = $this->input->post('recip_province');
+		$zipcode = $this->input->post('recip_zipcode');
 
-        // Combine selected orders and quantities into an array of arrays
-        $data = [];
-        for ($i = 0; $i < count($selectedOrders); $i++) {
-            $data[] = array(
-                'shoes_id' => $selectedOrders[$i],
-                'order_qty' => $quantities[$i]
-            );
-        }
+		$data = [];
+		for ($i = 0; $i < count($selectedOrders); $i++) {
+			$order_id = date('Y-m-d') . '-1';
 
-		// var_dump($data);exit;
-        // Insert orders into the database
-        $this->model->insert_orders($data);
+			while ($this->model->checkOrderIdExists($order_id)) {
+				$order_id_parts = explode('-', $order_id);
+				$order_id = $order_id_parts[0] . '-' . ($order_id_parts[1] + 1);
+			}
 
-        // Redirect or show success message
-        redirect('checkout/success');
-    }
+			$data[] = array(
+				'order_id' => $order_id,
+				'buyer_id' => $id[0],
+				'shoes_id' => $selectedOrders[$i],
+				'order_qty' => $quantities[$i],
+				'payment_method' => $payment_methods,
+				'status' => 'place order',
+				'amount' => $amount,
+				'date' => date('Y-m-d')
+			);
+		}
+
+		$this->model->insert_orders($data);
+
+		$recipientData = [
+			'order_id' => 1,
+			'recipient' => $recipient,
+			'recip_address' => $address,
+			'recip_province' => $province,
+			'recip_zipcode' => $zipcode,
+		];
+
+		$this->model->InsertData('recipients', $recipientData);
+
+		redirect('checkout/success');
+	}
 	// end handling checkout method
 
 	public function cart()

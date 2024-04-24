@@ -29,6 +29,7 @@ class Model extends CI_Model {
 	function getCart($id){
         $this->db->from('cart');
 		$this->db->join('shoes', 'shoes.id = cart.shoes_id');
+		$this->db->join('user_info', 'account_id = cart.buyer_id');
 		$this->db->where('cart.buyer_id', $id);
         return $this->db->get()->result();
     }
@@ -38,4 +39,10 @@ class Model extends CI_Model {
         $this->db->insert_batch('orders', $data);
     }
 	// end handling checkout method
+
+	public function checkOrderIdExists($order_id) {
+        $this->db->where('order_id', $order_id);
+        $query = $this->db->get('orders');
+        return $query->num_rows() > 0;
+    }
 }
