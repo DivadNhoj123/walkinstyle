@@ -36,8 +36,9 @@ class model extends CI_Model
     function getOrders()
     {
         $this->db->from('orders');
-        $this->db->join('user_info', ' user_info.account_id = orders.buyer_id');
-        $this->db->join('shoes', ' shoes.id = orders.shoes_id');
+        $this->db->join('user_info', 'user_info.account_id = orders.buyer_id');
+        $this->db->join('shoes', 'shoes.id = orders.shoes_id');
+        // $this->db->group_by('orders.order_id');
         return $this->db->get()->result();
     }
     public function filterOrders($order_id)
@@ -46,19 +47,20 @@ class model extends CI_Model
         $this->db->from('orders');
         $this->db->join('user_info', 'user_info.account_id = orders.buyer_id');
         $this->db->join('shoes', 'shoes.id = orders.shoes_id');
-        $this->db->where('orders.order_id', $order_id); // Filter orders by order ID
+        $this->db->where('orders.order_id', $order_id);
         $query = $this->db->get();
-        return $query->result(); // Return the result as an array of objects
+        return $query->result();
     }
 
-    public function orderView($id)
+    public function orderView($order_id)
     {
-        $this->db->select('orders.*, user_info.*, shoes.*, user_account.*');
+        $this->db->select('orders.*, user_info.*, shoes.*, user_account.*, recipients.*');
         $this->db->from('orders');
         $this->db->join('user_info', 'user_info.account_id = orders.buyer_id');
         $this->db->join('user_account', 'user_account.id = orders.buyer_id');
         $this->db->join('shoes', 'shoes.id = orders.shoes_id');
-        $this->db->where('orders.id', $id);
+        $this->db->join('recipients', 'recipients.orders_id = orders.order_id');
+        $this->db->where('orders.order_id', $order_id);
         $query = $this->db->get();
 
         return $query->row();

@@ -45,12 +45,13 @@ class Admin extends MX_Controller
     public function orders()
     {
         $order['orders'] = $this->model->getOrders();
+        // var_dump($order);exit;
         $this->load->view('admin-panel/orders/order', $order);
     }
     public function viewOrders($id)
     {
         $data['orders'] = $this->model->orderView($id); // Assuming you have an orderView method in your model
-        $data['products'] = $this->model->filterOrders($id); // Assuming you have a getOrders method in your model to retrieve products for a specific order
+        $data['products'] = $this->model->filterOrders($id); 
         $this->load->view('admin-panel/orders/view-order', $data);
     }
 

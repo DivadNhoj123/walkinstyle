@@ -194,9 +194,9 @@
                                                             <div class="badge badge-light-primary"><?= $product->status ?></div>
                                                         </td>
                                                         <td class="text-end pe-0">
-                                                            <span class="fw-bold">₱<?= $product->amount ?></span>
+                                                            <span class="fw-bold"><?= $product->amount ?></span>
                                                         </td>
-                                                        <td class="text-end pe-0">
+                                                        <td class="text-end pe-0 text-uppercase">
                                                             <?= $product->payment_method ?>
                                                         </td>
                                                         <td class="text-end pe-0">
@@ -212,7 +212,7 @@
                                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                                 <!--begin::Menu item-->
                                                                 <div class="menu-item px-3">
-                                                                    <a href="<?= base_url('admin/viewOrders/') . $product->id ?>" class="menu-link px-3">View</a>
+                                                                    <a href="<?= base_url('admin/viewOrders/') . $product->order_id ?>" class="menu-link px-3">View</a>
                                                                 </div>
                                                                 <!--end::Menu item-->
                                                                 <!--begin::Menu item-->

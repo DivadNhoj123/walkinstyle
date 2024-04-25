@@ -184,8 +184,12 @@ class Root extends MX_Controller
 
 		$this->model->insert_orders($data);
 
+		foreach ($selectedOrders as $shoe_id) {
+			$this->model->delete_cart_item($id[0], $shoe_id);
+		}
+
 		$recipientData = [
-			'order_id' => 1,
+			'orders_id' =>  $order_id,
 			'recipient' => $recipient,
 			'recip_address' => $address,
 			'recip_province' => $province,
@@ -194,7 +198,7 @@ class Root extends MX_Controller
 
 		$this->model->InsertData('recipients', $recipientData);
 
-		redirect('checkout/success');
+		redirect('root/products');
 	}
 	// end handling checkout method
 
