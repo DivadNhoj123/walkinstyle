@@ -11,4 +11,14 @@
 
 	<link href="<?= base_url('assets/tem-plate'); ?>/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="<?= base_url('assets/tem-plate'); ?>/css/style.bundle.css" rel="stylesheet" type="text/css" />
+	<style>
+		.standardized-image {
+			width: 200px;
+			/* Set the width to your desired size */
+			height: 200px;
+			/* Set the height to your desired size */
+			object-fit: cover;
+			/* Scale the image while maintaining aspect ratio and covering the entire container */
+		}
+	</style>
 </head>

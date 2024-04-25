@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="menu-item">
-                <a class="menu-link " href="../dist/index.html">
+                <a class="menu-link " href="<?= base_url('admin/client'); ?>">
                     <i class="ti-user me-2 ki-element-11 fs-1"></i>
                     <span class="menu-title">Client</span>
                 </a>

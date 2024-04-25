@@ -91,11 +91,11 @@
                         if (result.value) {
                             // Send AJAX request to delete product
                             $.ajax({
-                                url: 'admin/delete_product',
+                                url: 'admin/delete_client',
                                 method: 'POST',
                                 dataType: 'json',
                                 data: {
-                                    shoes_id: productId
+                                    client_id: productId 
                                 }, // Pass product ID
                                 success: function(response) {
                                     if (response.success) {

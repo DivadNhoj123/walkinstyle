@@ -111,12 +111,6 @@
                                         <!--end::Title-->
                                     </div>
                                     <!--end::Page title-->
-
-                                    <!--begin::Actions-->
-                                    <a href="#" class="btn btn-sm btn-success ms-3 px-4 py-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">
-                                        Create Project
-                                    </a>
-                                    <!--end::Actions-->
                                 </div>
                                 <!--end::Toolbar wrapper-->
                             </div>
@@ -144,16 +138,10 @@
                                         <!--end:::Tabs-->
 
                                         <!--begin::Button-->
-                                        <a href="/saul-html-pro/apps/ecommerce/sales/listing.html" class="btn btn-icon btn-light btn-active-secondary btn-sm ms-auto me-lg-n7">
-                                            <i class="ki-duotone ki-left fs-2"></i> </a>
-                                        <!--end::Button-->
-
-                                        <!--begin::Button-->
-                                        <a href="/saul-html-pro/apps/ecommerce/sales/edit-order.html" class="btn btn-success btn-sm me-lg-n7">Edit Order</a>
-                                        <!--end::Button-->
-
-                                        <!--begin::Button-->
-                                        <a href="/saul-html-pro/apps/ecommerce/sales/add-order.html" class="btn btn-primary btn-sm">Add New Order</a>
+                                        <a href="<?= base_url('admin/orders');?>" class="btn  btn-light btn-active-secondary btn-sm ">
+                                            <i class="ki-duotone ki-left fs-2"></i>
+                                            Back
+                                        </a>
                                         <!--end::Button-->
                                     </div>
                                     <!--begin::Order summary-->
@@ -163,7 +151,7 @@
                                             <!--begin::Card header-->
                                             <div class="card-header">
                                                 <div class="card-title">
-                                                    <h2>Order Details (#<?= $orders->date ?>000-<?= $orders->order_id ?>)</h2>
+                                                    <h2>Order Details (#<?= $orders->order_id ?>)</h2>
                                                 </div>
                                             </div>
                                             <!--end::Card header-->
@@ -194,9 +182,8 @@
                                                                         Payment Method
                                                                     </div>
                                                                 </td>
-                                                                <td class="fw-bold text-end">
+                                                                <td class="fw-bold text-end text-uppercase">
                                                                     <?= $orders->payment_method ?>
-                                                                    <img src="/saul-html-pro/assets/media/svg/card-logos/visa.svg" class="w-50px ms-2">
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -240,21 +227,22 @@
                                                                     <div class="d-flex align-items-center justify-content-end">
                                                                         <!--begin:: Avatar -->
                                                                         <div class="symbol symbol-circle symbol-25px overflow-hidden me-3">
-                                                                            <a href="/saul-html-pro/apps/ecommerce/customers/details.html">
-                                                                                <div class="symbol-label">
-                                                                                    <img src="/saul-html-pro/assets/media/avatars/300-23.jpg" alt="Dan Wilson" class="w-100">
+                                                                            <a>
+                                                                                <div class="symbol-label fs-3 bg-light-warning text-warning">
+                                                                                    <?php
+                                                                                    $initials = strtoupper(substr($orders->first_name, 0, 1) . substr($orders->last_name, 0, 1));
+                                                                                    echo $initials;
+                                                                                    ?>
                                                                                 </div>
                                                                             </a>
+                                                                            <!--end::Avatar-->
                                                                         </div>
-                                                                        <!--end::Avatar-->
-
                                                                         <!--begin::Name-->
-                                                                        <a href="/saul-html-pro/apps/ecommerce/customers/details.html" class="text-gray-600 text-hover-primary">
+                                                                        <a class="text-gray-600 text-hover-primary">
                                                                             <?= $orders->first_name ?>
                                                                             <?= $orders->last_name ?>
                                                                         </a>
                                                                         <!--end::Name-->
-                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -264,7 +252,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td class="fw-bold text-end">
-                                                                    <a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-600 text-hover-primary">
+                                                                    <a class="text-gray-600 text-hover-primary">
                                                                         <?= $orders->email ?>
                                                                     </a>
                                                                 </td>
@@ -341,10 +329,10 @@
 
                                                         <!--begin::Card body-->
                                                         <div class="card-body pt-0">
-                                                            Unit 1/23 Hastings Road,<br>
-                                                            Melbourne 3000,<br>
-                                                            Victoria,<br>
-                                                            Australia.
+                                                            <?= $orders->recipient ?><br>
+                                                            <?= $orders->recip_province ?>,<br>
+                                                            <?= $orders->recip_zipcode ?>,<br>
+                                                            <?= $orders->country ?>.
                                                         </div>
                                                         <!--end::Card body-->
                                                     </div>
@@ -409,10 +397,10 @@
 
                                                                     <tr>
                                                                         <td colspan="5" class="text-end">
-                                                                            Subtotal
+                                                                            Shipping Fee
                                                                         </td>
                                                                         <td class="text-end">
-                                                                            $264.00
+                                                                            ₱ 150.00
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -420,7 +408,7 @@
                                                                             Grand Total
                                                                         </td>
                                                                         <td class="text-gray-900 fs-3 fw-bolder text-end">
-                                                                            $269.00
+                                                                            <?= $orders->amount ?>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>

@@ -38,6 +38,12 @@ class Model extends CI_Model {
 	public function insert_orders($data) {
         $this->db->insert_batch('orders', $data);
     }
+
+	public function delete_cart_item($buyer_id, $shoes_id) {
+        $this->db->where('buyer_id', $buyer_id);
+        $this->db->where('shoes_id', $shoes_id);
+        $this->db->delete('cart');
+    }
 	// end handling checkout method
 
 	public function checkOrderIdExists($order_id) {
