@@ -53,6 +53,8 @@ class Root extends MX_Controller
 				'role' => 1,
 				'email' => $email,
 				'password' => base64_encode(md5($password)),
+				'date_joined' => date('Y-m-d'),
+				'date_login' => date('Y-m-d H:i:s', time())
 			];
 			$account_id = $this->model->insertData('user_account', $account_info);
 

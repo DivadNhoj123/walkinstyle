@@ -73,7 +73,7 @@
                                             </li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Products</li>
+                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Order</li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
                                             <li class="breadcrumb-item">
@@ -81,12 +81,12 @@
                                             </li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Product View</li>
+                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Product Order</li>
                                             <!--end::Item-->
                                         </ul>
                                         <!--end::Breadcrumb-->
                                         <!--begin::Title-->
-                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Products</h1>
+                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Orders</h1>
                                         <!--end::Title-->
                                     </div>
                                     <!--end::Page title-->
@@ -121,16 +121,6 @@
                                         <!--end::Card title-->
                                         <!--begin::Card toolbar-->
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
-                                            <div class="w-100 mw-150px">
-                                                <!--begin::Select2-->
-                                                <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-product-filter="status">
-                                                    <option></option>
-                                                    <option value="all">All</option>
-                                                    <option value="In Stock">In Stock</option>
-                                                    <option value="Low Stock">Low Stock</option>
-                                                </select>
-                                                <!--end::Select2-->
-                                            </div>
                                             <!--begin::Add product-->
                                             <a href="<?= base_url('admin/productAdd'); ?>" class="btn btn-primary">Deliver Orders</a>
                                             <!--end::Add product-->
@@ -154,7 +144,7 @@
                                                     <th class="text-end min-w-70px">Amount</th>
                                                     <th class="text-end min-w-50px">Method</th>
                                                     <th class="text-end min-w-100px">Date Ordered</th>
-                                                    <th class="text-end min-w-100px">Address</th>
+                                                    <th class="text-end min-w-100px">Ship Address</th>
                                                     <th class="text-end min-w-70px">Actions</th>
                                                 </tr>
                                             </thead>
@@ -217,11 +207,142 @@
                                                                 <!--end::Menu item-->
                                                                 <!--begin::Menu item-->
                                                                 <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row" data-product-id="<?= $product->id ?>">Deliver</a>
+                                                                    <a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Deliver</a>
                                                                 </div>
                                                                 <!--end::Menu item-->
                                                             </div>
                                                             <!--end::Menu-->
+                                                            <div class="modal fade" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
+                                                                <!--begin::Modal dialog-->
+                                                                <div class="modal-dialog modal-dialog-centered mw-600px">
+                                                                    <!--begin::Modal content-->
+                                                                    <div class="modal-content">
+                                                                        <!--begin::Modal header-->
+                                                                        <div class="modal-header pb-0 border-0 justify-content-end">
+                                                                            <!--begin::Close-->
+                                                                            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                                                <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                                                                            </div>
+                                                                            <!--end::Close-->
+                                                                        </div>
+                                                                        <!--begin::Modal header-->
+
+                                                                        <!--begin::Modal body-->
+                                                                        <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                                                                            <!--begin::Heading-->
+                                                                            <div class="text-center mb-13">
+                                                                                <!--begin::Title-->
+                                                                                <h1 class="mb-3">Delever this Order</h1>
+                                                                                <!--end::Title-->
+
+                                                                                <!--begin::Description-->
+                                                                                <div class="text-muted fw-semibold fs-5">
+                                                                                    Are you sure to deliver this order?
+                                                                                </div>
+                                                                                <!--end::Description-->
+                                                                            </div>
+                                                                            <!--end::Heading-->
+
+                                                                            <!--begin::Users-->
+                                                                            <div class="mb-15">
+                                                                                <!--begin::List-->
+                                                                                <div class="mh-275px scroll-y me-n7 pe-7">
+                                                                                    <!--begin::User-->
+                                                                                    <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                                                                        <!--begin::Details-->
+                                                                                        <div class="d-flex align-items-center">
+                                                                                            <!--begin::Avatar-->
+                                                                                            <div class="symbol symbol-35px symbol-circle">
+                                                                                                <span class="symbol-label bg-light-danger text-danger fw-semibold">
+                                                                                                    E </span>
+                                                                                            </div>
+                                                                                            <!--end::Avatar-->
+
+                                                                                            <!--begin::Details-->
+                                                                                            <div class="ms-6">
+                                                                                                <!--begin::Name-->
+                                                                                                <a href="#" class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">
+                                                                                                    Emma Bold
+
+                                                                                                    <span class="badge badge-light fs-8 fw-semibold ms-2">
+                                                                                                        Corporate Finance </span>
+                                                                                                </a>
+                                                                                                <!--end::Name-->
+
+                                                                                                <!--begin::Email-->
+                                                                                                <div class="fw-semibold text-muted">emma@intenso.com</div>
+                                                                                                <!--end::Email-->
+                                                                                            </div>
+                                                                                            <!--end::Details-->
+                                                                                        </div>
+                                                                                        <!--end::Details-->
+
+                                                                                        <!--begin::Stats-->
+                                                                                        <div class="d-flex">
+                                                                                            <!--begin::Sales-->
+                                                                                            <div class="text-end">
+                                                                                                <div class="fs-5 fw-bold text-gray-900">$5,000</div>
+
+                                                                                                <div class="fs-7 text-muted">Sales</div>
+                                                                                            </div>
+                                                                                            <!--end::Sales-->
+                                                                                        </div>
+                                                                                        <!--end::Stats-->
+                                                                                    </div>
+                                                                                    <!--end::User-->
+                                                                                </div>
+                                                                                <!--end::List-->
+                                                                            </div>
+                                                                            <!--end::Users-->
+                                                                            <div class="card card-flush ">
+                                                                                <!--begin::Card header-->
+                                                                                <div class="card-header">
+                                                                                    <div class="card-title">
+                                                                                        <h2>Select Courier</h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--end::Card header-->
+
+                                                                                <!--begin::Card body-->
+                                                                                <div class="card-body pt-0">
+                                                                                    <!--begin::Input group-->
+                                                                                    <form action="<?= base_url('admin/deliverOrder/' . $product->order_id) ?>" method="POST">
+                                                                                        <div class="fv-row fv-plugins-icon-container">
+                                                                                            <!--begin::Label-->
+                                                                                            <label class="required form-label float-start">Courier</label>
+                                                                                            <!--end::Label-->
+                                                                                            <!--begin::Input-->
+                                                                                            <select name="courier" class="form-select mb-3 select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select">
+                                                                                                <?php foreach ($couriers as $courier) { ?>
+                                                                                                    <option value="<?= $courier->courier_id ?> " selected>
+                                                                                                        <?= $courier->courier_name ?>
+                                                                                                        <?= $courier->courier_lname ?>
+                                                                                                    </option>
+                                                                                                <?php } ?>
+                                                                                            </select>
+                                                                                            <!--end::Input-->
+                                                                                            <div class="card-toolbar flex-row-fluid justify-content-end">
+                                                                                                <!--begin::Add product-->
+                                                                                                <button type="submit" class="btn btn-primary">Deliver Now</button>
+                                                                                                <!--end::Add product-->
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                    <!--end::Input group-->
+
+                                                                                    <!--begin::Input group-->
+                                                                                </div>
+                                                                                <!--end::Card header-->
+                                                                            </div>
+                                                                            <!--begin::Notice-->
+                                                                            <!--end::Notice-->
+                                                                        </div>
+                                                                        <!--end::Modal body-->
+                                                                    </div>
+                                                                    <!--end::Modal dialog-->
+                                                                </div>
+
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 <?php } ?>

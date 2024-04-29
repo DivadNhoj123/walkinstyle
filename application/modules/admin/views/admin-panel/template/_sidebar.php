@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="menu-item">
-                <a class="menu-link " href="../dist/index.html">
+                <a class="menu-link " href="<?= base_url('admin/courier'); ?>">
                     <i class="ti-truck me-2 ki-element-11 fs-1"></i>
                     <span class="menu-title">Courier</span>
                 </a>

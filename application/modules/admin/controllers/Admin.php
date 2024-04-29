@@ -45,19 +45,178 @@ class Admin extends MX_Controller
     public function orders()
     {
         $order['orders'] = $this->model->getOrders();
-        // var_dump($order);exit;
+        $order['couriers'] = $this->model->getCourier();
         $this->load->view('admin-panel/orders/order', $order);
     }
     public function viewOrders($id)
     {
         $data['orders'] = $this->model->orderView($id); // Assuming you have an orderView method in your model
-        $data['products'] = $this->model->filterOrders($id); 
+        $data['products'] = $this->model->filterOrders($id);
         $this->load->view('admin-panel/orders/view-order', $data);
     }
+    // Controller method to handle form submission
+    public function deliverOrder($order_id)
+    {
+        // Retrieve data from the form
+        $courier_id = $this->input->post('courier');
 
+        // Call a method in the model to update the order with the new courier_id and status
+        $result = $this->model->deliverOrder($order_id, $courier_id);
+
+        // Check if the update was successful
+        if ($result) {
+            redirect('admin/orders');
+        } else {
+            echo "Failed to update courier information.";
+        }
+    }
 
     //end hamdling for orders routes
 
+    //handles courier routes
+    public function courier()
+    {
+        $courier['couriers'] = $this->model->getCourier();
+        $this->load->view('admin-panel/courier/courier', $courier);
+    }
+    public function courierAdd()
+    {
+        $this->load->view('admin-panel/courier/courier-add');
+    }
+    public function add_courier()
+    {
+        $fname = $this->input->post('courier_name');
+        $lname = $this->input->post('courier_lname');
+        $email = $this->input->post('courier_email');
+        $phone = $this->input->post('courier_phone');
+        $address = $this->input->post('courier_address');
+
+        if ($_FILES['img']['name']) {
+            $config['upload_path'] = './shoes/'; // set the directory path
+            $config['allowed_types'] = 'gif|jpg|jpeg|png'; // allowed file types
+            $config['max_size'] = 2048; // max file size in KB
+
+            // Load upload library and initialize
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            // Check if file is uploaded successfully
+            if ($this->upload->do_upload('img')) {
+                $fileData = $this->upload->data();
+                $image = $fileData['file_name'];
+            } else {
+                // Error in uploading file
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+                redirect('admin/courier');
+            }
+        } else {
+            // No file is selected
+            $image = '';
+        }
+
+        // Generate random unique ID
+        $courier_id = $this->generateRandomString(7);
+
+        $add_courier = [
+            'courier_name' => $fname,
+            'courier_lname' => $lname,
+            'courier_email' => $email,
+            'courier_phone' => $phone,
+            'courier_address' => $address,
+            'courier_id' => $courier_id,
+            'date_added' => date('Y-m-d'),
+            'img' => $image
+        ];
+
+        $add_shoes = $this->model->InsertData('courier', $add_courier);
+
+        if ($add_shoes) {
+            redirect(base_url('admin/courier?success=true&method=add'));
+        } else {
+            // Set error flag if insertion fails
+            redirect(base_url('admin/courier?error=true'));
+        }
+    }
+
+    // Function to generate random string
+    private function generateRandomString($length = 10)
+    {
+        $characters = '0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+    public function CourierEdit($id)
+    {
+        $couriers['courier'] = $this->model->courierEdits($id);
+        $this->load->view('admin-panel/courier/courier-edit', $couriers);
+    }
+    public function update_courier($id)
+    {
+        $fname = $this->input->post('courier_name');
+        $lname = $this->input->post('courier_lname');
+        $email = $this->input->post('courier_email');
+        $phone = $this->input->post('courier_phone');
+        $address = $this->input->post('courier_address');
+        $recent_img = $this->input->post('recent_img');
+
+
+        if ($_FILES['img']['name']) {
+            $config['upload_path'] = './shoes/'; // set the directory path
+            $config['allowed_types'] = 'gif|jpg|jpeg|png'; // allowed file types
+            $config['max_size'] = 2048; // max file size in KB
+
+            // Load upload library and initialize
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            // Check if file is uploaded successfully
+            if ($this->upload->do_upload('img')) {
+                $fileData = $this->upload->data();
+                $image = $fileData['file_name'];
+            } else {
+                // Error in uploading file
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+                redirect('admin/courier');
+            }
+        } else {
+            // No file is selected
+            $image = $recent_img;
+        }
+
+        $update_courier = [
+            'courier_name' => $fname,
+            'courier_lname' => $lname,
+            'courier_email' => $email,
+            'courier_phone' => $phone,
+            'courier_address' => $address,
+            'img' => $image
+        ];
+
+        $this->model->update('courier', $update_courier, array('id' => $id));
+
+        redirect(base_url('admin/courier?success=true&method=update'));
+    }
+    public function delete_courier()
+    {
+        if ($this->input->is_ajax_request()) {
+            $courier_id = $this->input->post('courier_id');
+            $condition = array('id' => $courier_id);
+
+            $this->model->deleteData('courier', $condition);
+
+            $response = array('success' => true, 'message' => 'Product deleted successfully.');
+            echo json_encode($response);
+        } else {
+            show_404();
+        }
+    }
+    //hadnles client routes
     public function client()
     {
         $client['clients'] = $this->model->getClient();
@@ -174,8 +333,6 @@ class Admin extends MX_Controller
 
         redirect(base_url('admin/product?success=true&method=update'));
     }
-
-
     public function delete_product()
     {
         if ($this->input->is_ajax_request()) {
