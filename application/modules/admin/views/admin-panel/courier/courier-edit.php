@@ -73,7 +73,7 @@
                                             </li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Products</li>
+                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Courier</li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
                                             <li class="breadcrumb-item">
@@ -81,12 +81,12 @@
                                             </li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Add Product</li>
+                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Add Courier</li>
                                             <!--end::Item-->
                                         </ul>
                                         <!--end::Breadcrumb-->
                                         <!--begin::Title-->
-                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Products Add </h1>
+                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Add Courier</h1>
                                         <!--end::Title-->
                                     </div>
                                     <!--end::Page title-->
@@ -105,7 +105,7 @@
                                 <!--begin::Products-->
                                 <div id="kt_app_content_container" class="app-container  container-fluid ">
                                     <!--begin::Form-->
-                                    <form action="<?= base_url('admin/update_product/'.$product->id); ?>" method="POST" enctype="multipart/form-data" id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
+                                    <form action="<?= base_url('admin/update_courier/'.$courier->id); ?>" method="POST" enctype="multipart/form-data" id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework">
                                         <!--begin::Aside column-->
                                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
                                             <!--begin::Thumbnail settings-->
@@ -114,7 +114,7 @@
                                                 <div class="card-header">
                                                     <!--begin::Card title-->
                                                     <div class="card-title">
-                                                        <h2>Product Image</h2>
+                                                        <h2>Courier Image</h2>
                                                     </div>
                                                     <!--end::Card title-->
                                                 </div>
@@ -123,9 +123,21 @@
                                                 <!--begin::Card body-->
                                                 <div class="card-body text-center pt-0">
                                                     <!--begin::Image input-->
+                                                    <!--begin::Image input placeholder-->
+                                                    <style>
+                                                        .image-input-placeholder {
+                                                            background-image: url('<?= base_url('template'); ?>/media/svg/files/blank-image.svg');
+                                                        }
+
+                                                        [data-bs-theme="dark"] .image-input-placeholder {
+                                                            background-image: url('<?= base_url('template'); ?>/media/svg/files/blank-image-dark.svg');
+                                                        }
+                                                    </style>
+                                                    <!--end::Image input placeholder-->
+
                                                     <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
                                                         <!--begin::Preview existing avatar-->
-                                                        <div class="image-input-wrapper w-150px h-150px" style="background-image: url(<?= base_url('shoes/' . $product->img) ?>);"></div>
+                                                        <div class="image-input-wrapper w-150px h-150px" style="background-image: url(<?= base_url('shoes/' . $courier->img) ?>);"></div>
                                                         <!--end::Preview existing avatar-->
 
                                                         <!--begin::Label-->
@@ -134,7 +146,7 @@
                                                             <!--begin::Inputs-->
                                                             <input type="file" name="img" accept=".png, .jpg, .jpeg">
                                                             <input type="hidden" name="avatar_remove">
-                                                            <input type="hidden" name="recent_img" value="<?= $product->img ?>">
+                                                            <input type="hidden" name="recent_img" value="<?= $courier->img ?>">
                                                             <!--end::Inputs-->
                                                         </label>
                                                         <!--end::Label-->
@@ -164,28 +176,34 @@
                                                 <div class="card-header">
                                                     <!--begin::Card title-->
                                                     <div class="card-title">
-                                                        <h2>Category</h2>
+                                                        <h2>Contact Informations</h2>
                                                     </div>
                                                     <!--end::Card title-->
-
-                                                    <!--begin::Card toolbar-->
-                                                    <div class="card-toolbar">
-                                                        <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_product_status"></div>
-                                                    </div>
-                                                    <!--begin::Card toolbar-->
                                                 </div>
                                                 <!--end::Card header-->
 
                                                 <!--begin::Card body-->
                                                 <div class="card-body pt-0">
-                                                    <!--begin::Select2-->
-                                                    <select name="category" class="form-select mb-2 select2-hidden-accessible" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_product_status_select">
-                                                        <option value="<?= $product->category?>" selected><?= $product->category?></option>
-                                                        <option value="Basketball">Basketball</option>
-                                                        <option value="Soccer">Soccer</option>
-                                                        <option value="Fashion">Fashion</option>
-                                                    </select>
+                                                    <div class="mb-2 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="required form-label">Email</label>
+                                                        <!--end::Label-->
 
+                                                        <!--begin::Input-->
+                                                        <input type="text" name="courier_email" class="form-control mb-2" value="<?= $courier->courier_email?>">
+                                                        <!--end::Input-->
+                                                    </div>
+                                                </div>
+                                                <div class="card-body pt-0">
+                                                    <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                        <!--begin::Label-->
+                                                        <label class="required form-label">Phone</label>
+                                                        <!--end::Label-->
+
+                                                        <!--begin::Input-->
+                                                        <input type="text" name="courier_phone" class="form-control mb-2"  value="<?= $courier->courier_phone?>">
+                                                        <!--end::Input-->
+                                                    </div>
                                                 </div>
                                                 <!--end::Card body-->
                                             </div>
@@ -199,16 +217,9 @@
                                             <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2" role="tablist">
                                                 <!--begin:::Tab item-->
                                                 <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_ecommerce_add_product_general" aria-selected="true" role="tab">General</a>
+                                                    <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_ecommerce_add_product_general" aria-selected="true" role="tab">Courier Profile</a>
                                                 </li>
                                                 <!--end:::Tab item-->
-
-                                                <!--begin:::Tab item-->
-                                                <li class="nav-item" role="presentation">
-                                                    <a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_ecommerce_add_product_advanced" aria-selected="false" tabindex="-1" role="tab">Advanced</a>
-                                                </li>
-                                                <!--end:::Tab item-->
-
                                             </ul>
                                             <!--end:::Tabs-->
                                             <!--begin::Tab content-->
@@ -222,7 +233,7 @@
                                                             <!--begin::Card header-->
                                                             <div class="card-header">
                                                                 <div class="card-title">
-                                                                    <h2>General</h2>
+                                                                    <h2>Courier Informations</h2>
                                                                 </div>
                                                             </div>
                                                             <!--end::Card header-->
@@ -232,51 +243,31 @@
                                                                 <!--begin::Input group-->
                                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                     <!--begin::Label-->
-                                                                    <label class="required form-label">Product Name</label>
+                                                                    <label class="required form-label">First Name</label>
                                                                     <!--end::Label-->
 
                                                                     <!--begin::Input-->
-                                                                    <input type="text" name="product_name" class="form-control mb-2" placeholder="Product name" value="<?= $product->shoes_name?>">
+                                                                    <input type="text" name="courier_name" class="form-control mb-2" value="<?= $courier->courier_name?>">
                                                                     <!--end::Input-->
-
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-                                                                    <!--end::Description-->
-                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                                                                 </div>
                                                                 <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                     <!--begin::Label-->
-                                                                    <label class="required form-label">Product Brand</label>
+                                                                    <label class="required form-label">Last Name</label>
                                                                     <!--end::Label-->
 
                                                                     <!--begin::Input-->
-                                                                    <input type="text" name="product_brand" class="form-control mb-2" placeholder="Product name" value="<?= $product->brand?>">
+                                                                    <input type="text" name="courier_lname" class="form-control mb-2" value="<?= $courier->courier_lname?>">
                                                                     <!--end::Input-->
-
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">A product brand is required and recommended to be unique.</div>
-                                                                    <!--end::Description-->
-                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
                                                                 </div>
                                                                 <!--end::Input group-->
-
-                                                                <!--begin::Input group-->
-                                                                <div>
+                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
                                                                     <!--begin::Label-->
-                                                                    <label class="form-label">Description</label>
+                                                                    <label class="required form-label">Address</label>
                                                                     <!--end::Label-->
 
-                                                                    <!--begin::Editor-->
-                                                                    <div id="kt_ecommerce_add_product_description" name="kt_ecommerce_add_product_description" class="min-h-200px mb-2 ql-container ql-snow">
-                                                                        <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true" data-placeholder="Type your text here...">
-                                                                            <p><?= $product->description?></p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="hidden" id="descriptionInput" name="description">
-                                                                    <!--end::Editor-->
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
-                                                                    <!--end::Description-->
+                                                                    <!--begin::Input-->
+                                                                    <input type="text" name="courier_address" class="form-control mb-2" value="<?= $courier->courier_address?>">
+                                                                    <!--end::Input-->
                                                                 </div>
                                                                 <!--end::Input group-->
                                                             </div>
@@ -286,81 +277,6 @@
                                                     </div>
                                                 </div>
                                                 <!--end::Tab pane-->
-
-                                                <!--begin::Tab pane-->
-                                                <div class="tab-pane fade" id="kt_ecommerce_add_product_advanced" role="tab-panel">
-                                                    <div class="d-flex flex-column gap-7 gap-lg-10">
-
-                                                        <!--begin::Inventory-->
-                                                        <div class="card card-flush py-4">
-                                                            <!--begin::Card header-->
-                                                            <div class="card-header">
-                                                                <div class="card-title">
-                                                                    <h2>Inventory</h2>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Card header-->
-
-                                                            <!--begin::Card body-->
-                                                            <div class="card-body pt-0">
-                                                                <!--begin::Input group-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--begin::Label-->
-                                                                    <label class="required form-label">Price</label>
-                                                                    <!--end::Label-->
-
-                                                                    <!--begin::Input-->
-                                                                    <input type="text" name="price" class="form-control mb-2" placeholder="Product Price" value="<?= $product->price?>">
-                                                                    <!--end::Input-->
-
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">Enter the product price.</div>
-                                                                    <!--end::Description-->
-                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                                                                </div>
-                                                                <!--end::Input group-->
-
-                                                                <!--begin::Input group-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--begin::Label-->
-                                                                    <label class="required form-label">Color</label>
-                                                                    <!--end::Label-->
-
-                                                                    <!--begin::Input-->
-                                                                    <input type="text" name="color" class="form-control mb-2" placeholder="Produt Color" value="<?= $product->color?>">
-                                                                    <!--end::Input-->
-
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">Enter the product color.</div>
-                                                                    <!--end::Description-->
-                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                                                                </div>
-                                                                <!--end::Input group-->
-
-                                                                <!--begin::Input group-->
-                                                                <div class="mb-10 fv-row fv-plugins-icon-container">
-                                                                    <!--begin::Label-->
-                                                                    <label class="required form-label">Quantity</label>
-                                                                    <!--end::Label-->
-
-                                                                    <!--begin::Input-->
-                                                                    <input type="number" name="qty" class="form-control mb-2" placeholder="Product Quantity" value="<?= $product->stock?>">
-                                                                    <!--end::Input-->
-
-                                                                    <!--begin::Description-->
-                                                                    <div class="text-muted fs-7">Enter the product quantity.</div>
-                                                                    <!--end::Description-->
-                                                                    <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
-                                                                </div>
-                                                                <!--end::Input group-->
-                                                            </div>
-                                                            <!--end::Card header-->
-                                                        </div>
-                                                        <!--end::Inventory-->
-                                                    </div>
-                                                </div>
-                                                <!--end::Tab pane-->
-
                                             </div>
                                             <!--end::Tab content-->
 
@@ -372,7 +288,7 @@
                                                 <!--end::Button-->
 
                                                 <!--begin::Button-->
-                                                <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                                                <button type="submit"  class="btn btn-primary">
                                                     <span class="indicator-label">
                                                         Save Changes
                                                     </span>

@@ -73,20 +73,12 @@
                                             </li>
                                             <!--end::Item-->
                                             <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Clients</li>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <li class="breadcrumb-item">
-                                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
-                                            </li>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Client List</li>
+                                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Courier</li>
                                             <!--end::Item-->
                                         </ul>
                                         <!--end::Breadcrumb-->
                                         <!--begin::Title-->
-                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Client List</h1>
+                                        <h1 class="page-heading d-flex flex-column justify-content-center text-dark fw-bolder fs-1 lh-0">Courier</h1>
                                         <!--end::Title-->
                                     </div>
                                     <!--end::Page title-->
@@ -114,7 +106,7 @@
                                                     <span class="path1"></span>
                                                     <span class="path2"></span>
                                                 </i>
-                                                <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Client" />
+                                                <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Search Courier" />
                                             </div>
                                             <!--end::Search-->
                                         </div>
@@ -122,7 +114,7 @@
                                         <!--begin::Card toolbar-->
                                         <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                             <!--begin::Add product-->
-                                            <a href="<?= base_url('admin/productAdd'); ?>" class="btn btn-primary">Manage Clients</a>
+                                            <a href="<?= base_url('admin/courierAdd'); ?>" class="btn btn-primary">Add Courier</a>
                                             <!--end::Add product-->
                                         </div>
                                         <!--end::Card toolbar-->
@@ -139,74 +131,74 @@
                                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                                         </div>
                                                     </th>
-                                                    <th class="min-w-150px">User</th>
-                                                    <th class="min-w-100px">Date Joined</th>
-                                                    <th class="min-w-70px">Last Login</th>
-                                                    <th class="min-w-150px">Address</th>
-                                                    <th class="min-w-150px">Province</th>
-                                                    <th class="min-w-70px">Phone</th>
+                                                    <th class="min-w-200px">Courier Profile</th>
+                                                    <th class="text-end min-w-100px">Courier ID</th>
+                                                    <th class="text-end min-w-100px">Email</th>
+                                                    <th class="text-end min-w-100px">Phone</th>
+                                                    <th class="text-end min-w-100px">Address</th>
+                                                    <th class="text-end min-w-100px">Date added</th>
                                                     <th class="text-end min-w-70px">Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="text-gray-600 fw-semibold">
-                                                <?php foreach ($clients as $client) { ?>
-                                                    <tr class="odd">
+                                            <tbody class="fw-semibold text-gray-600">
+                                                <?php foreach ($couriers as $courier) { ?>
+                                                    <tr>
                                                         <td>
                                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                                <input class="form-check-input" type="checkbox" value="1">
+                                                                <input class="form-check-input" type="checkbox" value="1" />
                                                             </div>
                                                         </td>
                                                         <td class="d-flex align-items-center">
                                                             <!--begin:: Avatar -->
-                                                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                                <a>
-                                                                    <div class="symbol-label fs-3 bg-light-warning text-warning">
-                                                                        <?php
-                                                                        $initials = strtoupper(substr($client->first_name, 0, 1) . substr($client->last_name, 0, 1));
-                                                                        echo $initials;
-                                                                        ?>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                            <?php if (!empty($courier->img)) : ?>
+                                                                <div class="d-flex align-items-center">
+                                                                    <!--begin::Thumbnail-->
+                                                                    <a href="#" class="symbol symbol-circle symbol-50px me-3">
+                                                                        <span class="symbol-label" style="background-image:url(<?= base_url('shoes/' . $courier->img) ?>);"></span>
+                                                                    </a>
+                                                                    <!--end::Thumbnail-->
+                                                                </div>
+                                                            <?php else : ?>
+                                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                                    <a>
+                                                                        <div class="symbol-label fs-3 bg-light-warning text-warning">
+                                                                            <?php
+                                                                            $initials = strtoupper(substr($courier->courier_name, 0, 1) . substr($courier->courier_lname, 0, 1));
+                                                                            echo $initials;
+                                                                            ?>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            <?php endif; ?>
                                                             <!--end::Avatar-->
                                                             <!--begin::User details-->
                                                             <div class="d-flex flex-column">
-                                                                <a class="text-gray-800 text-hover-primary mb-1" data-kt-ecommerce-product-filter="product_name"><?= $client->first_name ?> <?= $client->last_name ?></a>
-                                                                <span><?= $client->email ?></span>
+                                                                <a class="text-gray-800 text-hover-primary mb-1" data-kt-ecommerce-product-filter="product_name"><?= $courier->courier_name ?> <?= $courier->courier_lname ?></a>
                                                             </div>
                                                             <!--begin::User details-->
                                                         </td>
 
-                                                        <td>
-                                                            <div class="badge badge-light fw-bold"> <?= $client->date_joined ?></div>
                                                         </td>
-                                                        <td>
-                                                            <div class="badge badge-info fw-bold">Yesterday</div>
-                                                        </td>
-                                                        <td>
-                                                            <?= $client->address ?>
-                                                        </td>
-                                                        <td data-order="2024-06-24T18:05:00+08:00">
-                                                            <?= $client->province ?>
-                                                            <?= $client->country ?>
-                                                        </td>
-                                                        <td>
-                                                            <?= $client->phone ?>
+                                                        <td class="text-end pe-0"><?= $courier->courier_id ?></td>
+                                                        <td class="text-end pe-0"><?= $courier->courier_email ?></td>
+                                                        <td class="text-end pe-0"><?= $courier->courier_phone ?></td>
+                                                        <td class="text-end pe-0"><?= $courier->courier_address ?></td>
+                                                        <td class="text-end pe-0">
+                                                            <span class="badge badge-info"><?= date('F j Y', strtotime($courier->date_added)) ?></span>
                                                         </td>
                                                         <td class="text-end">
-                                                            <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                                Actions
-                                                                <i class="ki-duotone ki-down fs-5 ms-1"></i> </a>
+                                                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                                             <!--begin::Menu-->
-                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4" data-kt-menu="true">
+                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                                 <!--begin::Menu item-->
                                                                 <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link text-primary px-5">
-                                                                        View client
-                                                                    </a>
-                                                                    <a href="#" class="menu-link text-danger px-5" data-kt-ecommerce-product-filter="delete_row" data-product-id="<?= $client->id ?>">
-                                                                        Delete client
-                                                                    </a>
+                                                                    <a href="<?= base_url('admin/courierEdit/') . $courier->id ?>" class="menu-link px-3">Edit</a>
+                                                                </div>
+                                                                <!--end::Menu item-->
+                                                                <!--begin::Menu item-->
+                                                                <div class="menu-item px-3">
+                                                                    <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row" data-product-id="<?= $courier->id ?>">Delete</a>
                                                                 </div>
                                                                 <!--end::Menu item-->
                                                             </div>
@@ -237,7 +229,7 @@
     <!--end::App-->
     <!--begin::Javascript-->
     <?php $this->load->view('admin-panel/template/_script'); ?>
-    <?php $this->load->view('admin-panel/clients/scripts'); ?>
+    <?php $this->load->view('admin-panel/courier/scripts'); ?>
     <!--end::Javascript-->
 </body>
 <!--end::Body-->

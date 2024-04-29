@@ -35,10 +35,13 @@ class model extends CI_Model
     //handles Order Query
     function getOrders()
     {
+        // Disable only_full_group_by mode for this query
+        $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+        $this->db->select('orders.order_id, user_info.*, orders.*'); 
         $this->db->from('orders');
         $this->db->join('user_info', 'user_info.account_id = orders.buyer_id');
         $this->db->join('shoes', 'shoes.id = orders.shoes_id');
-        // $this->db->group_by('orders.order_id');
+        $this->db->group_by('orders.order_id');
         return $this->db->get()->result();
     }
     public function filterOrders($order_id)
@@ -51,7 +54,6 @@ class model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-
     public function orderView($order_id)
     {
         $this->db->select('orders.*, user_info.*, shoes.*, user_account.*, recipients.*');
@@ -65,8 +67,42 @@ class model extends CI_Model
 
         return $query->row();
     }
+    // Inside your Order_model
+
+    public function deliverOrder($order_id, $courier_id)
+    {
+        $data = array(
+            'courier_id' => $courier_id,
+            'status' => 'delivering' // Updating status to 'delivering'
+        );
+
+        $this->db->where('order_id', $order_id);
+        $this->db->update('orders', $data);
+
+        // Check if the update was successful
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //end handling Order Query
 
+    //handles courier query
+    function getCourier()
+    {
+        $this->db->from('courier');
+        return $this->db->get()->result();
+    }
+    public function courierEdits($id)
+    {
+        $query = $this->db->get_where('courier', array('id' => $id));
+        return $query->row();
+    }
+    //end handling courier routes
+
+    //handle Clients Routes
     function getClient()
     {
         $this->db->from('user_account');
