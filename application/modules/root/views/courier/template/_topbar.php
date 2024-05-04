@@ -206,10 +206,10 @@
                 <!--begin::Menu-->
                 <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                     <!--begin:Menu item-->
-                    <a href="<?= base_url('root/products'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                    <a href="<?= base_url('root/courierPage'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <!--begin:Menu link-->
                         <span class="menu-link active">
-                            <span class="menu-title">Products</span>
+                            <span class="menu-title">To Deliver</span>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
                         <!--end:Menu link-->
@@ -217,36 +217,19 @@
 
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <a href="<?= base_url('root/cart'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title shopping-cart">Cart</span>
-                            <span class="text-danger mb-4" id="cart-count">
-                                <strong><?php echo $cart; ?></strong>
-                            </span>
-                        </span>
-                        <!--end:Menu link-->
-                    </a>
 
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <a href="<?= base_url('root/getOrders'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
+                    <a href="<?= base_url('root/myDelivered'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
                         <!--begin:Menu link-->
                         <span class="menu-link">
-                            <span class="menu-title shopping-cart">Order</span>
+                            <span class="menu-title ">Delevered</span>
                         </span>
                         <!--end:Menu link-->
                     </a>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Track Order</span>
-                            <span class="menu-arrow d-lg-none"></span>
-                        </span>
-                        <!--end:Menu link-->
-                    </div>
+                   
                     <!--end:Menu item-->
                 </div>
                 <!--end::Menu-->

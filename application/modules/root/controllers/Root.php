@@ -93,12 +93,16 @@ class Root extends MX_Controller
 		$row = $this->model->CheckData($loginInfo);
 
 		if ($row != NULL) {
-			$this->nativesession->set('id', $row->id);
 
 			if ($row->role == 0) {
+				$this->nativesession->set('id', $row->id);
 				redirect(base_url('admin/adminPanel'));
 			} elseif ($row->role == 1) {
+				$this->nativesession->set('id', $row->id);
 				redirect(base_url('root/products'));
+			} elseif ($row->role == 2) {
+				$this->nativesession->set('courier_id', $row->courier_id);
+				redirect(base_url('root/courierPage'));
 			}
 		} else {
 			echo 'wrong password';
@@ -117,15 +121,6 @@ class Root extends MX_Controller
 		$data['cart'] = $this->model->countCart($id);
 		$data['shoes'] = $this->model->getShoes();
 		$this->load->view('products/product-page', $data);
-	}
-
-
-	public function order()
-	{
-		$this->checkAccountNotNull();
-		$data = $this->nativesession->get('id');
-		$data['shoes'] = $this->model->getShoes();
-		$this->load->view('order', $data);
 	}
 
 	// handles add to cart method
@@ -204,6 +199,15 @@ class Root extends MX_Controller
 	}
 	// end handling checkout method
 
+	//handles orders routes
+	public function getOrders()
+	{
+		$id = $this->nativesession->get('id');
+		$data['cart'] = $this->model->countCart($id);
+		$data['orders'] = $this->model->getOrders($id);
+		$this->load->view('products/product-orders', $data);
+	}
+	//end handling order routes
 	public function cart()
 	{
 		$id = $this->nativesession->get('id');
@@ -259,4 +263,36 @@ class Root extends MX_Controller
 			redirect(base_url('root/checkout/'));
 		}
 	}
+
+	//hadles courier dashboards
+	public function courierPage()
+	{
+		$id = $this->nativesession->get('courier_id');
+		$data['orders'] = $this->model->toDeliver($id);
+		$this->load->view('courier/courier-page', $data);
+	}
+	public function AcceptToDeliver()
+	{
+		$productId = $this->input->post('productId');
+        $success = $this->model->ToAccept($productId);
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode(['success' => $success]));
+	}
+	public function successDelivered()
+	{
+		$productId = $this->input->post('productId');
+        $success = $this->model->successDelivered($productId);
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode(['success' => $success]));
+	}
+	public function myDelivered(){
+		$id = $this->nativesession->get('courier_id');
+		$data['orders'] = $this->model->myDelivered($id);
+		$this->load->view('courier/myDelivered', $data);
+	}
+	//end handling courier pages
 }
