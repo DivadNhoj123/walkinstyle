@@ -38,12 +38,12 @@
 	<div class="header_section">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-8">
+				<div class="col-sm-6">
 					<div class="logo">
 						<h1 class="text-white tes" style="font-size: 40px;">Walk <strong class="text-danger">N</strong> Style</strong>
 					</div>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
@@ -53,6 +53,7 @@
 								<a class="nav-item nav-link" href="index.html">Home</a>
 								<a class="nav-item nav-link" data-toggle="modal" data-target="#login-modal">Login</a>
 								<a class="nav-item nav-link" data-toggle="modal" data-target="#register-modal">Register</a>
+								<a class="nav-item nav-link" data-toggle="modal" data-target="#register-modal">Courier</a>
 							</div>
 						</div>
 					</nav>
