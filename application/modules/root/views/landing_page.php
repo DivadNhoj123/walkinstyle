@@ -1,78 +1,92 @@
 <!DOCTYPE html>
-<html lang="zxx" class="no-js">
+<html lang="en">
 
 <head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="shortcut icon" href="<?= base_url('assets/landingTemplate'); ?>/img/logo.svg">
-	<!-- Author Meta -->
-	<meta name="author" content="CodePixar">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<!-- site metas -->
+	<title>Walk N Style</title>
 	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>Walk N Style Shop</title>
-	<!--
-		CSS
-		============================================= -->
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/linearicons.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/themify-icons.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/bootstrap.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/owl.carousel.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/nice-select.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/nouislider.min.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/ion.rangeSlider.css" />
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/ion.rangeSlider.skinFlat.css" />
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/magnific-popup.css">
-	<link rel="stylesheet" href="<?= base_url('assets/landingTemplate'); ?>/css/main.css">
-</head>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- bootstrap css -->
+	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/bootstrap.min.css">
+	<!-- style css -->
+	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
+	<!-- Responsive-->
+	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/responsive.css">
+	<link rel="shortcut icon" href="<?= base_url('assets/landingTemplate'); ?>/img/logo.svg">
+	<!-- owl stylesheets -->
+	<link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/ti-icons/css/themify-icons.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<body>
-	<!-- Start Header Area -->
-	<header class="header_area sticky-header">
-		<div class="main_menu">
-			<nav class="navbar navbar-expand-lg navbar-light main_box">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-						<ul class="nav navbar-nav menu_nav ml-auto">
-							<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-							<li class="nav-item "><a class="nav-link" href="<?= base_url('root/shop'); ?>">Shop</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="#login-modal">Login</a></li>
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
-							<li class="nav-item">
-								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-							</li>
-						</ul>
+
+</head>
+<!-- body -->
+
+<body class="main-layout">
+	<!-- header section start -->
+	<div class="header_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10">
+					<div class="">
+						<h1 class="text-white" style="font-size: 40px;">Walk <strong class="text-warning">N</strong> Style</strong>
 					</div>
 				</div>
-			</nav>
-		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container">
-				<form class="d-flex justify-content-between">
-					<input type="text" class="form-control" id="search_input" placeholder="Search Here">
-					<button type="submit" class="btn"></button>
-					<span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-				</form>
+				<div class="col-sm-2">
+					<nav class="navbar navbar-expand-lg navbar-light bg-light">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+							<div class="navbar-nav">
+								<a class="nav-item nav-link" data-toggle="modal" data-target="#login-modal">Login</a>
+								<a class="nav-item nav-link" data-toggle="modal" data-target="#register-modal">Register</a>
+							</div>
+						</div>
+					</nav>
+				</div>
 			</div>
 		</div>
-	</header>
-	<!-- End Header Area -->
+		<div class="banner_section">
+			<div class="container-fluid">
+				<section class="slide-wrapper">
+					<div class="container-fluid">
+						<div class="carousel slide" data-ride="carousel">
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="row">
+										<div class="col-sm-2 padding_0">
+
+										</div>
+										<div class="col-sm-4">
+											<div class="banner_taital">
+												<h1 class="banner_text text-warning">Quality Products</h1>
+												<h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
+												<p class="lorem_text">Explore our latest shoe highlights, crafted with premium quality, comfort, and style in mind, ensuring you step into every stride with confidence and flair.</p>
+												<!-- <button class="buy_bt" data-toggle="modal" data-target="#login-modal">Login</button> -->
+											</div>
+										</div>
+										<div class="col-sm-5">
+											<div class="shoes_img"><img src="<?= base_url('assets/template'); ?>/images/running-shoes.png"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
 	<?php $this->load->view('modals/login-modal.php'); ?>
 	<div class="modal fade" id="register-modal">
 		<div class="modal-dialog modal-lg">
@@ -85,72 +99,55 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<i class="ti-close text-warning fw-bold"></i>
 									</button>
-									<h1 class="fw-bold text-center mt-5"> WALK <strong class="text-warning">N</strong> STYLE</h1>
-									<div class="register_form_inner">
-										<h3>Type your credentials</h3>
-										<form class="login_form" action="<?= base_url('root/registration_process/') ?>" method="post">
-											<div class="row">
-												<div class="col-md-4">
-													<div class=" form-group">
+									<h1 class="fw-bold text-center mt-5 text-white"> WALK <strong class="text-warning">N</strong> STYLE</h1>
+									<div>
+										<h3>Type your credentials</h3> <!-- Adjusted heading -->
+										<form action="<?= base_url('root/registration_process/') ?>" method="post"> <!-- Adjusted action -->
+											<!-- Adjusted input fields -->
+											<div class="col-md-12">
+												<div class="row">
+													<div class="col-4 mb-3">
 														<input type="text" class="form-control" placeholder="Firstname" name="fname" required>
 													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
+													<div class="col-sm-4 mb-3">
 														<input type="text" class="form-control" placeholder="Middlename" name="mi" required>
 													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
+													<div class="col-sm-4 mb-3">
 														<input type="text" class="form-control" placeholder="Lastname" name="lname" required>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class=" form-group">
-														<input type="email" class="form-control" placeholder="Email" name="email" required>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class=" form-group">
-														<input type="number" class="form-control" placeholder="Phone" name="phone" required>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12 mb-3">
 														<input type="text" class="form-control" placeholder="Address" name="address" required>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="number" class="form-control" placeholder="Zipcode" name="zcode" required>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 mb-3">
 														<input type="text" class="form-control" placeholder="Country" name="country" required>
 													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="password" class="form-control" placeholder="Password" name="password" required>
+													<div class="col-sm-6 mb-3">
+														<input type="text" class="form-control" placeholder="Zipcode" name="zipcode" required>
 													</div>
 												</div>
-												<div class="col-md-6">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 mb-3">
+														<input type="email" class="form-control" placeholder="Email" name="email" required>
+													</div>
+													<div class="col-sm-6 mb-3">
+														<input type="number" class="form-control" placeholder="Phone" name="phone" required>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6 mb-3">
+														<input type="password" class="form-control" placeholder="Password" name="password" required>
+													</div>
+													<div class="col-sm-6 mb-3">
 														<input type="password" class="form-control" placeholder="Confirm password" name="re_pass" required>
 													</div>
 												</div>
-											</div>
-											<div class="col-md-12 form-group">
-												<button type="submit" value="submit" class="primary-btn">register</button>
+												<div class="col-md-12 text-center"> <!-- Adjusted alignment -->
+													<button type="submit" value="submit" class="primary-btn">Register</button> <!-- Adjusted button label -->
+												</div>
 											</div>
 										</form>
 									</div>
@@ -162,183 +159,166 @@
 			</div>
 		</div>
 	</div>
-	<!-- start banner Area -->
-	<section class="banner-area">
+
+	<!-- header section end -->
+	<!-- new collection section start -->
+	<div class="layout_padding collection_section">
 		<div class="container">
-			<div class="row fullscreen align-items-center justify-content-start">
-				<div class="col-lg-12">
-					<!-- single-slide -->
-					<div class="row single-slide align-items-center d-flex">
-						<div class="col-lg-5 col-md-6">
-							<div class="banner-content">
-								<h1>Walk N Style <br>Collection!</h1>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-									dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-								<div class="add-bag d-flex align-items-center">
-									<a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-									<span class="add-text text-uppercase">Shop Now</span>
-								</div>
+			<h1 class="new_text"><strong>New Collection</strong></h1>
+			<p class="consectetur_text">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
+			<div class="collection_section_2">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="about-img">
+							<button class="new_bt">New</button>
+							<div class="shoes-img"><img src="<?= base_url('assets/template'); ?>/images/shoes-img1.png"></div>
+							<p class="sport_text">Men Sports</p>
+							<div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
+							<div class="star_icon">
+								<ul>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+								</ul>
 							</div>
 						</div>
-						<div class="col-lg-7">
-							<div class="banner-img">
-								<img class="img-fluid" src="<?= base_url('assets/landingTemplate'); ?>/img/banner/banner-img.png" alt="">
+						<button class="seemore_bt">See More</button>
+
+					</div>
+					<div class="col-md-6">
+						<div class="about-img2">
+							<div class="shoes-img2"><img src="<?= base_url('assets/template'); ?>/images/shoes-img2.png"></div>
+							<p class="sport_text">Men Sports</p>
+							<div class="dolar_text">$<strong style="color: #f12a47;">90</strong> </div>
+							<div class="star_icon">
+								<ul>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+									<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/star-icon.png"></a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<!-- single-slide -->
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- End banner Area -->
-
-	<!-- start features Area -->
-	<section class="features-area section_gap">
+	</div>
+	<!-- new collection section end -->
+	<!-- section footer start -->
+	<div class="section_footer">
 		<div class="container">
-			<div class="row features-inner">
-				<!-- single features -->
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<img src="<?= base_url('assets/landingTemplate'); ?>/img/features/f-icon1.png" alt="">
-						</div>
-						<h6>Free Delivery</h6>
-						<p>Free Shipping on all order</p>
+			<div class="mail_section">
+				<div class="row">
+					<div class="col-sm-6 col-lg-2">
+						<div><a href="#"><img src="<?= base_url('assets/template'); ?>/images/footer-logo.png"></a></div>
 					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<img src="<?= base_url('assets/landingTemplate'); ?>/img/features/f-icon2.png" alt="">
-						</div>
-						<h6>Return Policy</h6>
-						<p>Free Shipping on all order</p>
+					<div class="col-sm-6 col-lg-2">
+						<div class="footer-logo"><img src="<?= base_url('assets/template'); ?>/images/phone-icon.png"><span class="map_text">(71) 1234567890</span></div>
 					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<img src="<?= base_url('assets/landingTemplate'); ?>/img/features/f-icon3.png" alt="">
-						</div>
-						<h6>24/7 Support</h6>
-						<p>Free Shipping on all order</p>
+					<div class="col-sm-6 col-lg-3">
+						<div class="footer-logo"><img src="<?= base_url('assets/template'); ?>/images/email-icon.png"><span class="map_text">Demo@gmail.com</span></div>
 					</div>
-				</div>
-				<!-- single features -->
-				<div class="col-lg-3 col-md-6 col-sm-6">
-					<div class="single-features">
-						<div class="f-icon">
-							<img src="<?= base_url('assets/landingTemplate'); ?>/img/features/f-icon4.png" alt="">
+					<div class="col-sm-6 col-lg-3">
+						<div class="social_icon">
+							<ul>
+								<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/fb-icon.png"></a></li>
+								<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/twitter-icon.png"></a></li>
+								<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/in-icon.png"></a></li>
+								<li><a href="#"><img src="<?= base_url('assets/template'); ?>/images/google-icon.png"></a></li>
+							</ul>
 						</div>
-						<h6>Secure Payment</h6>
-						<p>Free Shipping on all order</p>
+					</div>
+					<div class="col-sm-2"></div>
+				</div>
+			</div>
+			<div class="footer_section_2">
+				<div class="row">
+					<div class="col-sm-4 col-lg-2">
+						<p class="dummy_text"> ipsum dolor sit amet, consectetur ipsum dolor sit amet, consectetur ipsum dolor sit amet,</p>
+					</div>
+					<div class="col-sm-4 col-lg-2">
+						<h2 class="shop_text">Address </h2>
+						<div class="image-icon"><img src="images/map-icon.png"><span class="pet_text">No 40 Baria Sreet 15/2 NewYork City, NY, United States.</span></div>
+					</div>
+					<div class="col-sm-4 col-md-6 col-lg-3">
+						<h2 class="shop_text">Our Company </h2>
+						<div class="delivery_text">
+							<ul>
+								<li>Delivery</li>
+								<li>Legal Notice</li>
+								<li>About us</li>
+								<li>Secure payment</li>
+								<li>Contact us</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<h2 class="adderess_text">Products</h2>
+						<div class="delivery_text">
+							<ul>
+								<li>Prices drop</li>
+								<li>New products</li>
+								<li>Best sales</li>
+								<li>Contact us</li>
+								<li>Sitemap</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-2">
+						<h2 class="adderess_text">Newsletter</h2>
+						<div class="form-group">
+							<input type="text" class="enter_email" placeholder="Enter Your email" name="Name">
+						</div>
+						<button class="subscribr_bt">Subscribe</button>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- end features Area -->
+	</div>
+	</div>
+	<!-- section footer end -->
+	<div class="copyright bg-warning">2019 All Rights Reserved. <a href="https://html.design">Free html Templates</a></div>
+	<!-- Javascript files-->
+	<script src="<?= base_url('assets/template'); ?>/js/jquery.min.js"></script>
+	<script src="<?= base_url('assets/template'); ?>/js/popper.min.js"></script>
+	<script src="<?= base_url('assets/template'); ?>/js/bootstrap.bundle.min.js"></script>
+	<script src="<?= base_url('assets/template'); ?>/js/jquery-3.0.0.min.js"></script>
+	<script src="<?= base_url('assets/template'); ?>/js/plugin.js"></script>
+	<!-- sidebar -->
+	<!-- javascript -->
+	<?php if (!empty($error_message)) : ?>
+		<script>
+			$(document).ready(function() {
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "<?php echo $error_message; ?>",
+					html: "<p>Please match your password</p>",
+					showConfirmButton: false,
+					timer: 5000
+				});
+			});
+		</script>
+	<?php endif; ?>
 
-	<!-- start product Area -->
-	<!-- end product Area -->
+	<?php if (!empty($error_message)) : ?>
+		<script>
+			$(document).ready(function() {
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "<?php echo $error_message; ?>",
+					html: "<p class='text-danger'>Your inputed credential is not match with our record</p>",
+					showConfirmButton: false,
+					timer: 5000
+				});
+			});
+		</script>
 
-	<!-- start footer Area -->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>About Us</h6>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore
-							magna aliqua.
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-4  col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Newsletter</h6>
-						<p>Stay update with our latest</p>
-						<div class="" id="mc_embed_signup">
-
-							<form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
-
-								<div class="d-flex flex-row">
-
-									<input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email '" required="" type="email">
-
-
-									<button class="click-btn btn btn-default"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
-									<div style="position: absolute; left: -5000px;">
-										<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-									</div>
-
-									<!-- <div class="col-lg-4 col-md-4">
-												<button class="bb-btn btn"><span class="lnr lnr-arrow-right"></span></button>
-											</div>  -->
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3  col-md-6 col-sm-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">Instragram Feed</h6>
-						<ul class="instafeed d-flex flex-wrap">
-							<li><img src="img/i1.jpg" alt=""></li>
-							<li><img src="img/i2.jpg" alt=""></li>
-							<li><img src="img/i3.jpg" alt=""></li>
-							<li><img src="img/i4.jpg" alt=""></li>
-							<li><img src="img/i5.jpg" alt=""></li>
-							<li><img src="img/i6.jpg" alt=""></li>
-							<li><img src="img/i7.jpg" alt=""></li>
-							<li><img src="img/i8.jpg" alt=""></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-2 col-md-6 col-sm-6">
-					<div class="single-footer-widget">
-						<h6>Follow Us</h6>
-						<p>Let us be social</p>
-						<div class="footer-social d-flex align-items-center">
-							<a href="#"><i class="fa fa-facebook"></i></a>
-							<a href="#"><i class="fa fa-twitter"></i></a>
-							<a href="#"><i class="fa fa-dribbble"></i></a>
-							<a href="#"><i class="fa fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
-				<p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					Copyright &copy;<script>
-						document.write(new Date().getFullYear());
-					</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-			</div>
-		</div>
-	</footer>
-	<!-- End footer Area -->
-
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/vendor/jquery-2.2.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/vendor/bootstrap.min.js"></script>
-	<script src="js/jquery.ajaxchimp.min.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/jquery.nice-select.min.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/jquery.sticky.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/nouislider.min.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/countdown.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/jquery.magnific-popup.min.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/owl.carousel.min.js"></script>
-	<!--gmaps Js-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/gmaps.min.js"></script>
-	<script src="<?= base_url('assets/landingTemplate'); ?>/js/main.js"></script>
-</body>
+	<?php endif; ?>
 
 </html>
