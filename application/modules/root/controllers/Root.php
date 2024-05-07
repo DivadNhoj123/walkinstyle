@@ -212,7 +212,7 @@ class Root extends MX_Controller
 	//handles orders routes
 	public function getOrders()
 	{
-		$id = $this->nativesession->get('id');
+		$id = $this->nativesession->get('account_id');
 		$data['cart'] = $this->model->countCart($id);
 		$data['orders'] = $this->model->getOrders($id);
 		$this->load->view('products/product-orders', $data);

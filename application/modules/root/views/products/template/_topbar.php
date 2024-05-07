@@ -206,45 +206,51 @@
                 <!--begin::Menu-->
                 <div class="menu menu-rounded menu-active-bg menu-state-primary menu-column menu-lg-row menu-title-gray-700 menu-icon-gray-500 menu-arrow-gray-500 menu-bullet-gray-500 my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0" id="kt_app_header_menu" data-kt-menu="true">
                     <!--begin:Menu item-->
+                    <?php
+                    // Get the current URL path
+                    $current_url = current_url();
+                    ?>
+
+                    <!-- Menu item: Products -->
                     <a href="<?= base_url('root/products'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link active">
+                        <!-- Menu link -->
+                        <span class="menu-link <?= ($current_url === base_url('root/products')) ? 'active bg-primary' : ''; ?>">
                             <span class="menu-title">Products</span>
                             <span class="menu-arrow d-lg-none"></span>
                         </span>
-                        <!--end:Menu link-->
+                        <!-- End Menu link -->
                     </a>
 
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
+                    <!-- Menu item: Cart -->
                     <a href="<?= base_url('root/cart'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
+                        <!-- Menu link -->
+                        <span class="menu-link <?= ($current_url === base_url('root/cart')) ? 'active bg-primary' : ''; ?>">
                             <span class="menu-title shopping-cart">Cart</span>
                             <span class="text-danger mb-4" id="cart-count">
-                                <strong><?php echo $cart; ?></strong>
+                                <strong><?= $cart; ?></strong>
                             </span>
                         </span>
-                        <!--end:Menu link-->
+                        <!-- End Menu link -->
                     </a>
 
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
+                    <!-- Menu item: Orders -->
                     <a href="<?= base_url('root/getOrders'); ?>" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
-                        <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title shopping-cart">Order</span>
+                        <!-- Menu link -->
+                        <span class="menu-link <?= ($current_url === base_url('root/getOrders')) ? 'active bg-primary' : ''; ?>">
+                            <span class="menu-title shopping-cart">Orders</span>
                         </span>
-                        <!--end:Menu link-->
+                        <!-- End Menu link -->
                     </a>
+
+
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
                     <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
                         <!--begin:Menu link-->
-                        <span class="menu-link">
-                            <span class="menu-title">Track Order</span>
+                        <!-- <span class="menu-link">
+                            <span class="menu-title">Completed Orders</span>
                             <span class="menu-arrow d-lg-none"></span>
-                        </span>
+                        </span> -->
                         <!--end:Menu link-->
                     </div>
                     <!--end:Menu item-->

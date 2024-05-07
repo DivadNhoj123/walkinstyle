@@ -94,7 +94,7 @@
                                                                         <!--begin::Title-->
                                                                         <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name"><?= $product->shoes_name ?></a>
                                                                         <!--end::Title-->
-                                                                        <div class="fs-7 text-muted">Order Status:  <span class="fw-bold badge badge-info text-capitalize"><?= $product->status ?></span> </div>
+                                                                        <div class="fs-7 text-muted">Order Status:  <span class="fw-bold badge badge-info"><?= $product->status ?></span> </div>
                                                                     </div>
                                                                 </div>
                                                                 <!--end::Avatar-->
