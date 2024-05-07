@@ -95,9 +95,13 @@
                                 method: 'POST',
                                 dataType: 'json',
                                 data: {
-                                    client_id: productId 
+                                    client_id: productId
                                 }, // Pass product ID
                                 success: function(response) {
+                                    console.log("Data Sent:", {
+                                        client_id: productId
+                                    }); // Log the data sent
+                                    console.log("Response Received:", response); // Log the response received
                                     if (response.success) {
                                         Swal.fire({
                                             text: "You have deleted " + productName + "!",

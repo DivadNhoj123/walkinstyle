@@ -181,7 +181,11 @@
                                                             </div>
                                                         </td>
                                                         <td class="text-end pe-0 text-capitalize" data-order="Low Stock">
-                                                            <div class="badge badge-light-primary"><?= $product->status ?></div>
+                                                            <?php if ($product->status == 'waiting for approval') { ?>
+                                                                <div class="badge badge-light-warning"><?= $product->status ?></div>
+                                                            <?php } elseif ($product->status == 'place order') { ?>
+                                                                <div class="badge badge-light-danger"><?= $product->status ?></div>
+                                                            <?php } ?>
                                                         </td>
                                                         <td class="text-end pe-0">
                                                             <span class="fw-bold"><?= $product->amount ?></span>
@@ -207,12 +211,12 @@
                                                                 <!--end::Menu item-->
                                                                 <!--begin::Menu item-->
                                                                 <div class="menu-item px-3">
-                                                                    <a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Deliver</a>
+                                                                    <a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app-<?= $product->id ?>">Deliver</a>
                                                                 </div>
                                                                 <!--end::Menu item-->
                                                             </div>
                                                             <!--end::Menu-->
-                                                            <div class="modal fade" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal fade" id="kt_modal_create_app-<?= $product->id ?>" tabindex="-1" aria-hidden="true">
                                                                 <!--begin::Modal dialog-->
                                                                 <div class="modal-dialog modal-dialog-centered mw-600px">
                                                                     <!--begin::Modal content-->
@@ -252,26 +256,27 @@
                                                                                         <!--begin::Details-->
                                                                                         <div class="d-flex align-items-center">
                                                                                             <!--begin::Avatar-->
-                                                                                            <div class="symbol symbol-35px symbol-circle">
-                                                                                                <span class="symbol-label bg-light-danger text-danger fw-semibold">
-                                                                                                    E </span>
+                                                                                            <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+                                                                                                <div class="symbol-label fs-3 bg-light-warning text-warning">
+                                                                                                    <?php
+                                                                                                    $initials = strtoupper(substr($product->first_name, 0, 1) . substr($product->last_name, 0, 1));
+                                                                                                    echo $initials;
+                                                                                                    ?>
+                                                                                                </div>
                                                                                             </div>
                                                                                             <!--end::Avatar-->
-
+                                                                                            <?= $product->id ?>
                                                                                             <!--begin::Details-->
                                                                                             <div class="ms-6">
                                                                                                 <!--begin::Name-->
-                                                                                                <a href="#" class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">
-                                                                                                    Emma Bold
-
-                                                                                                    <span class="badge badge-light fs-8 fw-semibold ms-2">
-                                                                                                        Corporate Finance </span>
+                                                                                                <a class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">
+                                                                                                    <?= $product->first_name ?> <?= $product->last_name ?>
                                                                                                 </a>
-                                                                                                <!--end::Name-->
+                                                                                                Phone Number:
+                                                                                                <span class="badge badge-warning fs-8 fw-semibold ms-2">
 
-                                                                                                <!--begin::Email-->
-                                                                                                <div class="fw-semibold text-muted">emma@intenso.com</div>
-                                                                                                <!--end::Email-->
+                                                                                                    <?= $product->phone ?>
+                                                                                                </span>
                                                                                             </div>
                                                                                             <!--end::Details-->
                                                                                         </div>
@@ -281,9 +286,9 @@
                                                                                         <div class="d-flex">
                                                                                             <!--begin::Sales-->
                                                                                             <div class="text-end">
-                                                                                                <div class="fs-5 fw-bold text-gray-900">$5,000</div>
+                                                                                                <div class="fs-5 fw-bold text-gray-900"> <?= $product->amount ?></div>
 
-                                                                                                <div class="fs-7 text-muted">Sales</div>
+                                                                                                <div class="fs-7 text-muted"> <span class="badge badge-success text-capitalize"><?= $product->payment_method ?></span></div>
                                                                                             </div>
                                                                                             <!--end::Sales-->
                                                                                         </div>

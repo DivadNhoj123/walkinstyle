@@ -127,7 +127,7 @@
                                                                     <!--begin::User details-->
                                                                 </td>
                                                                 <td class="text-end pe-0 text-capitalize" data-order="Low Stock">
-                                                                    <?php if ($product->status == 'waiting') { ?>
+                                                                    <?php if ($product->status == 'waiting for approval') { ?>
                                                                         <div class="badge badge-light-danger"><?= $product->status ?></div>
                                                                     <?php } elseif ($product->status == 'delivering') { ?>
                                                                         <div class="badge badge-light-primary"><?= $product->status ?></div>
@@ -144,7 +144,7 @@
                                                                     <span class="fw-bold"><?= $product->address ?>, <?= $product->province ?> <?= $product->zipcode ?> <?= $product->country ?></span>
                                                                 </td>
                                                                 <td class="text-end">
-                                                                    <?php if ($product->status == 'waiting') { ?>
+                                                                    <?php if ($product->status == 'waiting for approval') { ?>
                                                                             <button data-kt-ecommerce-product-filter="accept" class="btn btn-info" data-product-id="<?= $product->orders_id ?>">Accept</button>
                                                                     <?php } elseif ($product->status == 'delivering') { ?>
                                                                         <button data-kt-ecommerce-product-filter="delivered" class="btn btn-success" data-product-id="<?= $product->orders_id ?>">Delivered</button>

@@ -5,7 +5,7 @@
         <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false" class="flex-column-fluid menu menu-sub-indention menu-column menu-rounded menu-active-bg mb-7">
             <!--begin:Menu item-->
             <div class="menu-item">
-                <a class="menu-link" href="../dist/index.html">
+                <a class="menu-link" href="<?= base_url('admin/adminPanel'); ?>">
                     <i class="ti-desktop me-2 ki-element-11 fs-1"></i>
                     <span class="menu-title">Dashboard</span>
                 </a>

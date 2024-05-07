@@ -180,7 +180,7 @@
 
                                                         </td>
                                                         <td class="text-end pe-0"><?= $courier->courier_id ?></td>
-                                                        <td class="text-end pe-0"><?= $courier->courier_email ?></td>
+                                                        <td class="text-end pe-0"><?= $courier->email ?></td>
                                                         <td class="text-end pe-0"><?= $courier->courier_phone ?></td>
                                                         <td class="text-end pe-0"><?= $courier->courier_address ?></td>
                                                         <td class="text-end pe-0">

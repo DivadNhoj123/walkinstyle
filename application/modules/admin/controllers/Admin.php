@@ -355,10 +355,10 @@ class Admin extends MX_Controller
             $client_id = $this->input->post('client_id');
 
             $where = array('id' => $client_id);
-
             $this->model->deleteData('user_account', $where);
 
-            $this->model->deleteData('user_info', $where);
+            $where1 =  array('account_id' => $client_id);
+            $this->model->deleteData('user_info', $where1);
 
             $response = array('success' => true, 'message' => 'Client deleted successfully.');
             echo json_encode($response);
