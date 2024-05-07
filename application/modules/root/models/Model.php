@@ -24,7 +24,7 @@ class Model extends CI_Model
 		$result = $this->db->get()->row();
 
 		if (!$result) {
-			$this->db->from('courier'); 
+			$this->db->from('courier');
 			$this->db->where($where);
 			$result = $this->db->get()->row();
 		}
@@ -63,12 +63,17 @@ class Model extends CI_Model
 
 	function getOrders($id)
 	{
+		$this->db->select('orders.courier_id as orders_id, orders.*, shoes.*, courier.courier_name, courier.courier_lname, courier.courier_phone, recipients.*');
 		$this->db->from('orders');
 		$this->db->join('shoes', 'shoes.id = orders.shoes_id');
-		// $this->db->join('recipients', 'orders.id = orders.order_id');
+		$this->db->join('courier', 'orders.courier_id = courier.courier_id');
+		$this->db->join('recipients', 'recipients.orders_id = orders.order_id');
 		$this->db->where('orders.buyer_id', $id);
 		return $this->db->get()->result();
 	}
+	
+
+
 	// end handling checkout method
 
 	public function checkOrderIdExists($order_id)
@@ -80,7 +85,8 @@ class Model extends CI_Model
 
 
 	//handle query for the courier
-	function toDeliver($id){
+	function toDeliver($id)
+	{
 		$this->db->select('orders.id as orders_id, user_info.*, orders.*, shoes.*');
 		$this->db->from('orders');
 		$this->db->join('shoes', 'shoes.id = orders.shoes_id');
@@ -89,20 +95,23 @@ class Model extends CI_Model
 		$this->db->where_in('status', ['delivering', 'waiting for approval']);
 		return $this->db->get()->result();
 	}
-	function ToAccept($productId){
+	function ToAccept($productId)
+	{
 		$this->db->where('id', $productId)->update('orders', ['status' => 'delivering']);
-        return $this->db->affected_rows() > 0;
+		return $this->db->affected_rows() > 0;
 	}
-	function successDelivered($productId){
+	function successDelivered($productId)
+	{
 		$this->db->where('id', $productId)->update('orders', ['status' => 'delivered']);
-        return $this->db->affected_rows() > 0;
+		return $this->db->affected_rows() > 0;
 	}
-	function myDelivered($id){
+	function myDelivered($id)
+	{
 		$this->db->from('orders');
 		$this->db->join('shoes', 'shoes.id = orders.shoes_id');
 		$this->db->join('user_info', 'account_id = orders.buyer_id');
 		$this->db->where('courier_id', $id);
-		$this->db->where_in('status','delivered');
+		$this->db->where_in('status', 'delivered');
 		return $this->db->get()->result();
 	}
 	//end handling 
