@@ -17,19 +17,16 @@
 	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/bootstrap.min.css">
 	<!-- style css -->
 	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
 	<!-- Responsive-->
 	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/responsive.css">
-	<!-- fevicon -->
-	<link rel="icon" href="<?= base_url('assets/template'); ?>/images/fevicon.png" type="image/gif" />
-	<!-- Scrollbar Custom CSS -->
-	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/jquery.mCustomScrollbar.min.css">
-	<!-- Tweaks for older IEs-->
-	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<link rel="shortcut icon" href="<?= base_url('assets/landingTemplate'); ?>/img/logo.svg">
 	<!-- owl stylesheets -->
-	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="<?= base_url('assets/template'); ?>/css/owl.theme.default.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+	<link rel="stylesheet" href="<?= base_url('assets'); ?>/vendors/ti-icons/css/themify-icons.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+
 </head>
 <!-- body -->
 
@@ -38,22 +35,20 @@
 	<div class="header_section">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6">
-					<div class="logo">
-						<h1 class="text-white tes" style="font-size: 40px;">Walk <strong class="text-danger">N</strong> Style</strong>
+				<div class="col-sm-10">
+					<div class="">
+						<h1 class="text-white" style="font-size: 40px;">Walk <strong class="text-warning">N</strong> Style</strong>
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-2">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 							<div class="navbar-nav">
-								<a class="nav-item nav-link" href="index.html">Home</a>
 								<a class="nav-item nav-link" data-toggle="modal" data-target="#login-modal">Login</a>
 								<a class="nav-item nav-link" data-toggle="modal" data-target="#register-modal">Register</a>
-								<a class="nav-item nav-link" data-toggle="modal" data-target="#register-modal">Courier</a>
 							</div>
 						</div>
 					</nav>
@@ -64,7 +59,7 @@
 			<div class="container-fluid">
 				<section class="slide-wrapper">
 					<div class="container-fluid">
-						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel slide" data-ride="carousel">
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner">
 								<div class="carousel-item active">
@@ -74,7 +69,7 @@
 										</div>
 										<div class="col-sm-4">
 											<div class="banner_taital">
-												<h1 class="banner_text">Quality Products</h1>
+												<h1 class="banner_text text-warning">Quality Products</h1>
 												<h1 class="mens_text"><strong>Men's Like Plex</strong></h1>
 												<p class="lorem_text">Explore our latest shoe highlights, crafted with premium quality, comfort, and style in mind, ensuring you step into every stride with confidence and flair.</p>
 												<!-- <button class="buy_bt" data-toggle="modal" data-target="#login-modal">Login</button> -->
@@ -104,72 +99,55 @@
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<i class="ti-close text-warning fw-bold"></i>
 									</button>
-									<h1 class="fw-bold text-center mt-5"> WALK <strong class="text-warning">N</strong> STYLE</h1>
-									<div class="register_form_inner">
-										<h3>Type your credentials</h3>
-										<form class="login_form" action="<?= base_url('root/registration_process/') ?>" method="post">
-											<div class="row">
-												<div class="col-md-4">
-													<div class=" form-group">
+									<h1 class="fw-bold text-center mt-5 text-white"> WALK <strong class="text-warning">N</strong> STYLE</h1>
+									<div>
+										<h3>Type your credentials</h3> <!-- Adjusted heading -->
+										<form action="<?= base_url('root/registration_process/') ?>" method="post"> <!-- Adjusted action -->
+											<!-- Adjusted input fields -->
+											<div class="col-md-12">
+												<div class="row">
+													<div class="col-4 mb-3">
 														<input type="text" class="form-control" placeholder="Firstname" name="fname" required>
 													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
+													<div class="col-sm-4 mb-3">
 														<input type="text" class="form-control" placeholder="Middlename" name="mi" required>
 													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
+													<div class="col-sm-4 mb-3">
 														<input type="text" class="form-control" placeholder="Lastname" name="lname" required>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class=" form-group">
-														<input type="email" class="form-control" placeholder="Email" name="email" required>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class=" form-group">
-														<input type="number" class="form-control" placeholder="Phone" name="phone" required>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-12">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-12 mb-3">
 														<input type="text" class="form-control" placeholder="Address" name="address" required>
 													</div>
 												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="number" class="form-control" placeholder="Zipcode" name="zcode" required>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 mb-3">
 														<input type="text" class="form-control" placeholder="Country" name="country" required>
 													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<input type="password" class="form-control" placeholder="Password" name="password" required>
+													<div class="col-sm-6 mb-3">
+														<input type="text" class="form-control" placeholder="Zipcode" name="zipcode" required>
 													</div>
 												</div>
-												<div class="col-md-6">
-													<div class="form-group">
+												<div class="row">
+													<div class="col-sm-6 mb-3">
+														<input type="email" class="form-control" placeholder="Email" name="email" required>
+													</div>
+													<div class="col-sm-6 mb-3">
+														<input type="number" class="form-control" placeholder="Phone" name="phone" required>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6 mb-3">
+														<input type="password" class="form-control" placeholder="Password" name="password" required>
+													</div>
+													<div class="col-sm-6 mb-3">
 														<input type="password" class="form-control" placeholder="Confirm password" name="re_pass" required>
 													</div>
 												</div>
-											</div>
-											<div class="col-md-12 form-group">
-												<button type="submit" value="submit" class="primary-btn">register</button>
+												<div class="col-md-12 text-center"> <!-- Adjusted alignment -->
+													<button type="submit" value="submit" class="primary-btn">Register</button> <!-- Adjusted button label -->
+												</div>
 											</div>
 										</form>
 									</div>
@@ -181,6 +159,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!-- header section end -->
 	<!-- new collection section start -->
 	<div class="layout_padding collection_section">
@@ -206,6 +185,7 @@
 							</div>
 						</div>
 						<button class="seemore_bt">See More</button>
+
 					</div>
 					<div class="col-md-6">
 						<div class="about-img2">
@@ -301,9 +281,7 @@
 	</div>
 	</div>
 	<!-- section footer end -->
-	<div class="copyright">2019 All Rights Reserved. <a href="https://html.design">Free html Templates</a></div>
-
-
+	<div class="copyright bg-warning">2019 All Rights Reserved. <a href="https://html.design">Free html Templates</a></div>
 	<!-- Javascript files-->
 	<script src="<?= base_url('assets/template'); ?>/js/jquery.min.js"></script>
 	<script src="<?= base_url('assets/template'); ?>/js/popper.min.js"></script>
@@ -311,43 +289,36 @@
 	<script src="<?= base_url('assets/template'); ?>/js/jquery-3.0.0.min.js"></script>
 	<script src="<?= base_url('assets/template'); ?>/js/plugin.js"></script>
 	<!-- sidebar -->
-	<script src="<?= base_url('assets/template'); ?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="<?= base_url('assets/template'); ?>/js/custom.js"></script>
 	<!-- javascript -->
-	<script src="<?= base_url('assets/template'); ?>/js/owl.carousel.js"></script>
-	<script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-	<script>
-		$(document).ready(function() {
-			$(".fancybox").fancybox({
-				openEffect: "none",
-				closeEffect: "none"
-			});
-
-
-			$('#myCarousel').carousel({
-				interval: false
-			});
-
-			//scroll slides on swipe for touch enabled devices
-
-			$("#myCarousel").on("touchstart", function(event) {
-
-				var yClick = event.originalEvent.touches[0].pageY;
-				$(this).one("touchmove", function(event) {
-
-					var yMove = event.originalEvent.touches[0].pageY;
-					if (Math.floor(yClick - yMove) > 1) {
-						$(".carousel").carousel('next');
-					} else if (Math.floor(yClick - yMove) < -1) {
-						$(".carousel").carousel('prev');
-					}
-				});
-				$(".carousel").on("touchend", function() {
-					$(this).off("touchmove");
+	<?php if (!empty($error_message)) : ?>
+		<script>
+			$(document).ready(function() {
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "<?php echo $error_message; ?>",
+					html: "<p>Please match your password</p>",
+					showConfirmButton: false,
+					timer: 5000
 				});
 			});
-		});
-	</script>
-</body>
+		</script>
+	<?php endif; ?>
+
+	<?php if (!empty($error_message)) : ?>
+		<script>
+			$(document).ready(function() {
+				Swal.fire({
+					position: "top-center",
+					icon: "error",
+					title: "<?php echo $error_message; ?>",
+					html: "<p class='text-danger'>Your inputed credential is not match with our record</p>",
+					showConfirmButton: false,
+					timer: 5000
+				});
+			});
+		</script>
+
+	<?php endif; ?>
 
 </html>

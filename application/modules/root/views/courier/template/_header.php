@@ -21,4 +21,29 @@
 			/* Scale the image while maintaining aspect ratio and covering the entire container */
 		}
 	</style>
+	<style>
+				.modal-content {
+					background-color: #ff77ff; /* Fuchsia Pink */
+				}
+				.modal-content .form-control {
+					border-radius: 30px;
+					padding: 15px 25px;
+					border: 1px solid #eee;
+					width: calc(100% - 50px); /* width - sum of horizontal padding */
+					margin: 0 auto; /* Center align */
+					margin-bottom: 20px;
+					font-size: 16px;
+				}
+				.modal-content .primary-btn {
+					border-radius: 30px;
+					padding: 15px 25px;
+					font-size: 16px;
+					background-color: #ffbc59;
+					border: none;
+					color: #fff;
+					transition: all 0.3s ease;
+					width: calc(100% - 50px); /* width - sum of horizontal padding */
+					margin: 0 auto; /* Center align */
+				}
+			</style>
 </head>

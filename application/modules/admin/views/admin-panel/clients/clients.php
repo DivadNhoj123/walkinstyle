@@ -204,8 +204,9 @@
                                                                     <a href="#" class="menu-link text-primary px-5">
                                                                         View client
                                                                     </a>
-                                                                    <a href="#" class="menu-link text-danger px-5" data-kt-ecommerce-product-filter="delete_row" data-product-id="<?= $client->id ?>">
+                                                                    <a href="#" class="menu-link text-danger px-5" data-kt-ecommerce-product-filter="delete_row" data-product-id="<?= $client->account_id ?>">
                                                                         Delete client
+                                                                        <?= $client->account_id ?>
                                                                     </a>
                                                                 </div>
                                                                 <!--end::Menu item-->

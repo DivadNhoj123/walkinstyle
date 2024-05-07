@@ -73,7 +73,7 @@ class model extends CI_Model
     {
         $data = array(
             'courier_id' => $courier_id,
-            'status' => 'delivering' // Updating status to 'delivering'
+            'status' => 'waiting for approval' // Updating status to 'delivering'
         );
 
         $this->db->where('order_id', $order_id);

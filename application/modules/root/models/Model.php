@@ -86,7 +86,7 @@ class Model extends CI_Model
 		$this->db->join('shoes', 'shoes.id = orders.shoes_id');
 		$this->db->join('user_info', 'account_id = orders.buyer_id');
 		$this->db->where('courier_id', $id);
-		$this->db->where_in('status', ['waiting', 'delivering']);
+		$this->db->where_in('status', ['delivering', 'waiting for approval']);
 		return $this->db->get()->result();
 	}
 	function ToAccept($productId){
