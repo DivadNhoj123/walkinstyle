@@ -102,7 +102,7 @@ class Root extends MX_Controller
 				$this->nativesession->set('id', $row->id);
 				redirect(base_url('admin/adminPanel'));
 			} elseif ($row->role == 1) {
-				$this->nativesession->set('account_id', $row->account_id);
+				$this->nativesession->set('id', $row->id);
 				redirect(base_url('root/products'));
 			} elseif ($row->role == 2) {
 				$this->nativesession->set('courier_id', $row->courier_id);
@@ -124,7 +124,8 @@ class Root extends MX_Controller
 
 	public function products()
 	{
-		$id = $this->nativesession->get('account_id');
+		$this->checkAccountNotNull();
+		$id = $this->nativesession->get('id');
 		$data['cart'] = $this->model->countCart($id);
 		$data['shoes'] = $this->model->getShoes();
 		$this->load->view('products/product-page', $data);
@@ -133,7 +134,8 @@ class Root extends MX_Controller
 	// handles add to cart method
 	public function add_cart()
 	{
-		$data = $this->nativesession->get('account_id');
+		$this->checkAccountNotNull();
+		$data = $this->nativesession->get('id');
 		$shoesId = $this->input->post('shoes_id');
 		$add_cart = [
 			'buyer_id' => $data,
@@ -155,7 +157,8 @@ class Root extends MX_Controller
 	// handles checkout methods
 	public function checkout()
 	{
-		$id = $this->nativesession->get('account_id');
+		$this->checkAccountNotNull();
+		$id = $this->nativesession->get('id');
 		$id = is_array($id) ? $id : array($id); // Ensure $id is an array
 
 		$selectedOrders = $this->input->post('order');
@@ -212,7 +215,7 @@ class Root extends MX_Controller
 	//handles orders routes
 	public function getOrders()
 	{
-		$id = $this->nativesession->get('account_id');
+		$id = $this->nativesession->get('id');
 		$data['cart'] = $this->model->countCart($id);
 		$data['orders'] = $this->model->getOrders($id);
 		$this->load->view('products/product-orders', $data);
@@ -220,7 +223,7 @@ class Root extends MX_Controller
 	//end handling order routes
 	public function cart()
 	{
-		$id = $this->nativesession->get('account_id');
+		$id = $this->nativesession->get('id');
 		$data['cart'] = $this->model->countCart($id);
 		$data['on_cart'] = $this->model->getCart($id);
 		$this->load->view('products/product-cart', $data);

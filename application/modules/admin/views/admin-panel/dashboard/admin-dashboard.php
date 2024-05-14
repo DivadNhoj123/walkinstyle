@@ -95,153 +95,84 @@
                             <!--begin::Content container-->
                             <div id="kt_app_content_container" class="app-container container-fluid">
                                 <!--begin::Products-->
-                                <div class="row">
+                                <div class="row mb-5">
                                     <!--begin::Col-->
-                                    <div class="col-md-6 ">
-                                        <!--begin::Card widget 6-->
-                                        <div class="card card-flush  h-md-50 mb-5 mb-xl-10">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-5">
-                                                <!--begin::Title-->
-                                                <div class="card-title d-flex flex-column">
-                                                    <!--begin::Info-->
-                                                    <div class="d-flex align-items-center">
-                                                        <!--begin::Amount-->
-                                                        <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">0</span>
-                                                        <!--end::Amount-->
-                                                    </div>
-                                                    <!--end::Info-->
-
-                                                    <!--begin::Subtitle-->
-                                                    <span class="text-gray-500 pt-1 fw-semibold fs-1">Total Products</span>
-                                                    <!--end::Subtitle-->
-                                                </div>
-                                                <!--end::Title-->
+                                    <div class="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
+                                        <!--begin::Payment address-->
+                                        <div class="card card-flush py-4 flex-row-fluid position-relative">
+                                            <!--begin::Background-->
+                                            <div class="position-absolute top-0 end-0 bottom-0 opacity-300 d-flex align-items-center me-5">
+                                                <i class="ki-solid ki-purchase text-warning" style="font-size: 13em"></i>
                                             </div>
-                                            <!--end::Header-->
+                                            <!--end::Background-->
+
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2> Total Orders</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
 
                                             <!--begin::Card body-->
-                                            <div class="card-body d-flex align-items-end px-0 pb-0">
-                                              
+                                            <div class="card-body pt-0">
+                                                <span class="display-3 text-warning"><?php echo $order_count; ?></span>
                                             </div>
                                             <!--end::Card body-->
                                         </div>
-                                        <!--end::Card widget 6-->
+                                        <!--end::Payment address-->
 
-
-                                        <!--begin::Card widget 7-->
-                                        <div class="card card-flush h-md-50 mb-xl-10">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-5">
-                                                <!--begin::Title-->
-                                                <div class="card-title d-flex flex-column">
-                                                    <!--begin::Amount-->
-                                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">0</span>
-                                                    <!--end::Amount-->
-
-                                                    <!--begin::Subtitle-->
-                                                    <span class="text-gray-500 pt-1 fw-semibold fs-1">Total Courier</span>
-                                                    <!--end::Subtitle-->
-                                                </div>
-                                                <!--end::Title-->
+                                        <!--begin::Shipping address-->
+                                        <div class="card card-flush py-4 flex-row-fluid position-relative">
+                                            <!--begin::Background-->
+                                            <div class="position-absolute top-0 end-0 bottom-0 opacity-30 d-flex align-items-center me-5">
+                                                <i class="ki-solid ki-people text-warning" style="font-size: 13em"></i>
                                             </div>
-                                            <!--end::Header-->
+                                            <!--end::Background-->
+
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Registered <br>Accounts</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
 
                                             <!--begin::Card body-->
-                                            <div class="card-body d-flex flex-column justify-content-end pe-0">
-                                                <!--begin::Title-->
-                                                <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">Recently Added</span>
-                                                <!--end::Title-->
-
-                                                <!--begin::Users group-->
-                                                <div class="symbol-group symbol-hover flex-nowrap">
-                                                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Alan Warden" data-kt-initialized="1">
-                                                        <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
-                                                    </div>
-                                                    <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-                                                        <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">+42</span>
-                                                    </a>
-                                                </div>
-                                                <!--end::Users group-->
+                                            <div class="card-body pt-0">
+                                                <span class="display-3 text-warning"><?php echo $order_accounts; ?></span>
                                             </div>
                                             <!--end::Card body-->
                                         </div>
-                                        <!--end::Card widget 7-->
-                                    </div>
-                                    <div class="col-md-6 ">
-                                        <!--begin::Card widget 6-->
-                                        <div class="card card-flush  h-md-50 mb-5 mb-xl-10">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-5">
-                                                <!--begin::Title-->
-                                                <div class="card-title d-flex flex-column">
-                                                    <!--begin::Info-->
-                                                    <div class="d-flex align-items-center">
-                                                        <!--begin::Amount-->
-                                                        <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">0</span>
-                                                        <!--end::Amount-->
-                                                    </div>
-                                                    <!--end::Info-->
+                                        <!--end::Shipping address-->
 
-                                                    <!--begin::Subtitle-->
-                                                    <span class="text-gray-500 pt-1 fw-semibold fs-1">Total Orders</span>
-                                                    <!--end::Subtitle-->
-                                                </div>
-                                                <!--end::Title-->
+                                        <!--begin::Billing address 2-->
+                                        <div class="card card-flush py-4 flex-row-fluid position-relative">
+                                            <!--begin::Background-->
+                                            <div class="position-absolute top-0 end-0 bottom-0 opacity-30 d-flex align-items-center me-5">
+                                                <i class="ki-solid ki-courier text-warning" style="font-size: 14em"></i>
                                             </div>
-                                            <!--end::Header-->
+                                            <!--end::Background-->
+
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Total Courier</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
 
                                             <!--begin::Card body-->
-                                            <div class="card-body d-flex align-items-end px-0 pb-0">
-                                              
+                                            <div class="card-body pt-0">
+                                                <span class="display-3 text-warning"><?php echo $order_courier; ?></span>
                                             </div>
                                             <!--end::Card body-->
                                         </div>
-                                        <!--end::Card widget 6-->
-
-
-                                        <!--begin::Card widget 7-->
-                                        <div class="card card-flush h-md-50 mb-xl-10">
-                                            <!--begin::Header-->
-                                            <div class="card-header pt-5">
-                                                <!--begin::Title-->
-                                                <div class="card-title d-flex flex-column">
-                                                    <!--begin::Amount-->
-                                                    <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">0</span>
-                                                    <!--end::Amount-->
-
-                                                    <!--begin::Subtitle-->
-                                                    <span class="text-gray-500 pt-1 fw-semibold fs-1">New Customers This Month</span>
-                                                    <!--end::Subtitle-->
-                                                </div>
-                                                <!--end::Title-->
-                                            </div>
-                                            <!--end::Header-->
-
-                                            <!--begin::Card body-->
-                                            <div class="card-body d-flex flex-column justify-content-end pe-0">
-                                                <!--begin::Title-->
-                                                <span class="fs-6 fw-bolder text-gray-800 d-block mb-2">Recently Login</span>
-                                                <!--end::Title-->
-
-                                                <!--begin::Users group-->
-                                                <div class="symbol-group symbol-hover flex-nowrap">
-                                                    <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Alan Warden" data-kt-initialized="1">
-                                                        <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
-                                                    </div>
-                                                    <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-                                                        <span class="symbol-label bg-light text-gray-400 fs-8 fw-bold">+42</span>
-                                                    </a>
-                                                </div>
-                                                <!--end::Users group-->
-                                            </div>
-                                            <!--end::Card body-->
-                                        </div>
-                                        <!--end::Card widget 7-->
+                                        <!--end::Billing address 2-->
                                     </div>
                                     <!--end::Col-->
                                 </div>
-                                
+
                                 <!--end::Products-->
                             </div>
                             <!--end::Content container-->

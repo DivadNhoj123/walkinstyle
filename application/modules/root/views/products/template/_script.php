@@ -121,8 +121,8 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const quantityInputs = document.querySelectorAll('.quantityInput');
-        const minusBtns = document.querySelectorAll('[id^="minusBtn"]');
-        const plusBtns = document.querySelectorAll('[id^="plusBtn"]');
+        const minusBtns = document.querySelectorAll('.minusBtn');
+        const plusBtns = document.querySelectorAll('.plusBtn');
 
         minusBtns.forEach((minusBtn, index) => {
             minusBtn.addEventListener('click', () => {
@@ -148,7 +148,7 @@
             quantityInputs[index].value = currentValue + 1;
         }
     });
-</script>>
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
