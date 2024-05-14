@@ -1,6 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class model extends CI_Model
 {
+    public function count_orders() {
+        return $this->db->count_all('orders');
+    }
+    public function count_accounts() {
+        return $this->db->count_all('user_info');
+    }
+    public function count_courier() {
+        return $this->db->count_all('courier');
+    }
     function insertData($table, $data)
     {
         $this->db->insert($table, $data);

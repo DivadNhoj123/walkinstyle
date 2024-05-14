@@ -65,6 +65,7 @@
                                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                                         </div>
                                                     </th>
+                                                    <th class="min-w-70px">Order Id</th>
                                                     <th class="min-w-200px">Product</th>
                                                     <th class="text-start min-w-70px">Courier</th>
                                                     <th class="text-end min-w-70px">Amount</th>
@@ -82,6 +83,9 @@
                                                             </div>
                                                         </td>
                                                         <td>
+                                                            <?= $product->order_id ?>
+                                                        </td>
+                                                        <td>
                                                             <div class="d-flex align-items-center">
                                                                 <!--begin:: Avatar -->
                                                                 <div class="d-flex align-items-center">
@@ -94,7 +98,7 @@
                                                                         <!--begin::Title-->
                                                                         <a href="#" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name"><?= $product->shoes_name ?></a>
                                                                         <!--end::Title-->
-                                                                        <div class="fs-7 text-muted">Order Status:  <span class="fw-bold badge badge-info text-capitalize"><?= $product->status ?></span> </div>
+                                                                        <div class="fs-7 text-muted">Order Status: <span class="fw-bold badge badge-info text-capitalize"><?= $product->status ?></span> </div>
                                                                     </div>
                                                                 </div>
                                                                 <!--end::Avatar-->
@@ -120,9 +124,9 @@
                                                             </div>
                                                             <!--begin::User details-->
                                                         </td>
-                                                       
+
                                                         <td class="text-end pe-0">
-                                                           <?= $product->amount ?>
+                                                            <?= $product->amount ?>
                                                         </td>
                                                         <td class="text-end pe-0 text-uppercase">
                                                             <?= $product->payment_method ?>

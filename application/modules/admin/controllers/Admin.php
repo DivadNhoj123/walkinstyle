@@ -21,7 +21,10 @@ class Admin extends MX_Controller
     {
         $this->checkAccountNotNull();
         $id = $this->nativesession->get('id');
-        $this->load->view('admin-panel/dashboard/admin-dashboard', $id);
+        $data['order_count'] = $this->model->count_orders();
+        $data['order_accounts'] = $this->model->count_accounts();
+        $data['order_courier'] = $this->model->count_courier();
+        $this->load->view('admin-panel/dashboard/admin-dashboard', $data);
     }
 
     //handles for products routes
@@ -119,13 +122,15 @@ class Admin extends MX_Controller
         $courier_id = $this->generateRandomString(7);
 
         $add_courier = [
+            'role' => 2,
             'courier_name' => $fname,
             'courier_lname' => $lname,
-            'courier_email' => $email,
+            'email' => $email,
             'courier_phone' => $phone,
             'courier_address' => $address,
             'courier_id' => $courier_id,
             'date_added' => date('Y-m-d'),
+            'password' => base64_encode(md5('walkinstyle123')),
             'img' => $image
         ];
 

@@ -112,7 +112,7 @@
 																			</span>
 																			<!--end::Name-->
 																			<!--begin::Label-->
-																			<span class="badge badge-light-success"><?= $cart->price ?></span>
+																			<span>Price: <span class="badge badge-light-success">₱ <?= $cart->price ?></span></span> 
 																			<!--end::Label-->
 																		</div>
 																		<!--end::Customer-->
